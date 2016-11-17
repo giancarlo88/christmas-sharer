@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import Choice2Contents from "./Choice2Contents.js";
+import $ from "jquery"
+import ChoiceContents from "./ChoiceContents.js";
 
 
 
 class Choice2 extends Component  {
-// constructor(props){
-//   super(props)
-//   this.toggleChoice = this.props.toggleChoice.bind(this)
- 
-// }
+constructor(props){
+  super(props)
+  this.state = {
+    data: ""
+  }
+}
+ componentDidMount(){
+   $.ajax({
+    url: "http://pokeapi.co/api/v2/pokemon/"+Math.floor(Math.random() * 150),
+    success: function(data) {
+      this.setState({data: data.name})
+    }.bind(this)
+  })
+ }
 render() {
   return (
   <div className="choice-container">
-    <button onClick={this.toggleChoice} className="choice1">Choice2</button>
-    <Choice2Contents/>
+    <ChoiceContents data={this.state.data} />
   </div>
   )
 }

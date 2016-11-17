@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import React, { Component } from 'react';
-import Choice1Contents from "./Choice1Contents.js";
+import ChoiceContents from "./ChoiceContents.js";
 class Choice1 extends Component  {
 constructor(props){
   super(props)
@@ -10,17 +10,16 @@ constructor(props){
 }
  componentDidMount(){
    $.ajax({
-    url: "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1",
+    url: "https://api.icndb.com/jokes/random",
     success: function(data) {
-      this.setState({data: data})
+      this.setState({data: data.value.joke})
     }.bind(this)
   })
  }
 render() {
   return (
   <div className="choice-container">
-    <button onClick={this.toggleChoice} className="choice1">Choice1</button>
-    <Choice1Contents/> 
+    <ChoiceContents data={this.state.data}/> 
   </div>
   )
 }
