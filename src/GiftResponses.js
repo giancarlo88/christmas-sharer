@@ -1,10 +1,8 @@
+import $ from 'jquery'
 import React, { Component } from 'react';
-import $ from "jquery"
 import ChoiceContents from "./ChoiceContents.js";
 
-
-
-class Choice2 extends Component  {
+class GiftResponses extends Component  {
 constructor(props){
   super(props)
   this.state = {
@@ -17,21 +15,23 @@ componentWillAppear(callback){
 componentWillLeave(callback){
   console.log("disappear")
 }
- componentDidMount(callback){
+ componentDidMount(){
    $.ajax({
-    url: "http://pokeapi.co/api/v2/pokemon/"+Math.floor(Math.random() * 150),
+    url: "https://api.icndb.com/jokes/random",
     success: function(data) {
-      this.setState({data: data.name})
+      this.setState({data: data.value.joke})
     }.bind(this)
   })
  }
 render() {
   return (
+    
   <div className="choice-container">
-    <ChoiceContents data={this.state.data} />
+   
+    <ChoiceContents data={this.state.data}/>
   </div>
   )
 }
 }
 
-export default Choice2;
+export default GiftResponses;

@@ -3,7 +3,7 @@ import $ from "jquery"
 import ChoiceContents from "./ChoiceContents.js";
 
 
-class Choice3 extends Component  {
+class SeasonsGreetings extends Component  {
   state = {
     data:  ""
   }
@@ -29,4 +29,4 @@ componentWillLeave(callback){
     )
   }
 }
-export default Choice3;
+export default SeasonsGreetings;

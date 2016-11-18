@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import ReactTransitionGroup from "react-addons-transition-group"
-import Choice1 from "./Choice1.js";
-import Choice2 from "./Choice2.js";
-import Choice3 from "./Choice3.js";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+//import ReactTransitionGroup from "react-addons-transition-group"
 
-function FirstChild(props) {
-  const childrenArray = React.Children.toArray(props.children);
-  return childrenArray[0] || null
-}
+import Intro from "./Intro"
+import GiftResponses from "./GiftResponses";
+import InvitationExcuses from "./InvitationExcuses";
+import SeasonsGreetings from "./SeasonsGreetings";
+import Share from "./Share"
+
+// function FirstChild(props) {
+//   const childrenArray = React.Children.toArray(props.children);
+//   return childrenArray[0] || null
+// }
 
 class ChoiceContainer extends Component {
  
@@ -20,25 +23,25 @@ class ChoiceContainer extends Component {
   }
   render() {
     // const style = {
-    //   choice1: {
+    //   GiftResponses: {
     //     backgroundColor: "#70257F"
     //   }, 
-    //   choice2: {
+    //   InvitationExcuses: {
     //     backgroundColor: "#257F6D"
     //   },
-    //   choice3: {
+    //   SeasonsGreetings: {
     //     backgroundColor: "#7F1413"
     //   }
     // }
     
       // const classnames = function() {
       //   switch(this.state.choice){
-      //     case "choice1": 
-      //       return "content-container-choice1";
-      //     case "choice2": 
-      //       return "content-container-choice2";
-      //     case "choice3": 
-      //       return "content-container-choice3";
+      //     case "GiftResponses": 
+      //       return "content-container-GiftResponses";
+      //     case "InvitationExcuses": 
+      //       return "content-container-InvitationExcuses";
+      //     case "SeasonsGreetings": 
+      //       return "content-container-SeasonsGreetings";
       //      case "none":
       //      default:
       //       return "content-container-start";
@@ -49,16 +52,23 @@ class ChoiceContainer extends Component {
     return (
       <div 
         className={cssClasses}>
+        { this.state.choice==="none" && <Intro className="intro" key={0}/> }
         <div className="toggle-container">
-          <div onClick={this.handleChoiceClick.bind(this, "choice1")} className="choice-toggle">Choice 1</div>
-          <div onClick={this.handleChoiceClick.bind(this, "choice2")} className="choice-toggle">Choice 2</div>
-          <div onClick={this.handleChoiceClick.bind(this, "choice3")} className="choice-toggle">Choice 3</div>
+          <div onClick={this.handleChoiceClick.bind(this, "gift-responses")} className="choice-toggle">Gift Responses</div>
+          <div onClick={this.handleChoiceClick.bind(this, "invitation-excuses")} className="choice-toggle">Invitation Excuses</div>
+          <div onClick={this.handleChoiceClick.bind(this, "seasons-greetings")} className="choice-toggle">Seasons Greetings</div>
         </div>
-         <ReactTransitionGroup component={FirstChild}>
-          { this.state.choice==="choice1" && <Choice1 key={1} /> }
-          { this.state.choice==="choice2" && <Choice2 key={2} /> }
-          { this.state.choice==="choice3" && <Choice3 key={3} /> }
-        </ReactTransitionGroup>
+         <ReactCSSTransitionGroup
+          transitionName="fade"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+         >
+          { this.state.choice==="gift-responses" && <GiftResponses key={1} /> }
+          { this.state.choice==="invitation-excuses" && <InvitationExcuses key={2} /> }
+          { this.state.choice==="seasons-greetings" && <SeasonsGreetings key={3} /> }
+        </ReactCSSTransitionGroup>
       </div>
 
     )

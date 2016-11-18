@@ -1,29 +1,42 @@
 body, html, #root, .App, .content-container {
   height: 100%;
   text-align: center;
+  font-family: Georgia, Times, Times New Roman, serif;
+
 }
 
 .content-container {
   padding: 10px;
-  transition: all .2s ease;
+  transition: all 5s ease;
+  will-change: background-color;
+
     &.none {
-    background-color: #7F1579;
+    background-color: #F4F4F4;  // Need to be gradients
+
+      .toggle-container {
+        min-height: 70%;
+        align-items: flex-start;
+      }
   }
 
-  &.choice1 {
-    background-color: #257F6D
+  &.gift-responses {
+    background-color: #EE3E4C
   }
 
-  &.choice2 {
-    background-color: #7F1413 
+  &.invitation-excuses {
+    background-color: #665EC1 
   }
 
-  &.choice3 {
-    background-color: #70257F
+  &.seasons-greetings {
+    background-color: #64BD71
+  }
+
+  .intro {
+    height: 30%;
+    margin: 0 auto;
+    width: 40%;
   }
 }
-
-
 
 .choice-contents {
   background-color: #FFFEFD;
@@ -75,11 +88,15 @@ body, html, #root, .App, .content-container {
   min-height: 30%;
   justify-content: space-around;
   width: 50%;
+  transition: all 1s ease-in-out;
 
   .choice-toggle {
+    color: #171615;
     cursor: pointer;
     display: inline;
-    color: #FFFEFD
+    font-weight: bold;
+    padding: 10px;
+    text-transform: uppercase;
   }
 }
 

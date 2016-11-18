@@ -1,18 +1,27 @@
 body, html, #root, .App, .content-container {
   height: 100%;
-  text-align: center; }
+  text-align: center;
+  font-family: Georgia, Times, Times New Roman, serif; }
 
 .content-container {
   padding: 10px;
-  transition: all .2s ease; }
+  transition: all 5s ease;
+  will-change: background-color; }
   .content-container.none {
-    background-color: #7F1579; }
-  .content-container.choice1 {
-    background-color: #257F6D; }
-  .content-container.choice2 {
-    background-color: #7F1413; }
-  .content-container.choice3 {
-    background-color: #70257F; }
+    background-color: #F4F4F4; }
+    .content-container.none .toggle-container {
+      min-height: 70%;
+      align-items: flex-start; }
+  .content-container.gift-responses {
+    background-color: #EE3E4C; }
+  .content-container.invitation-excuses {
+    background-color: #665EC1; }
+  .content-container.seasons-greetings {
+    background-color: #64BD71; }
+  .content-container .intro {
+    height: 30%;
+    margin: 0 auto;
+    width: 40%; }
 
 .choice-contents {
   background-color: #FFFEFD;
@@ -51,8 +60,12 @@ body, html, #root, .App, .content-container {
   margin: 0 auto;
   min-height: 30%;
   justify-content: space-around;
-  width: 50%; }
+  width: 50%;
+  transition: all 1s ease-in-out; }
   .toggle-container .choice-toggle {
+    color: #171615;
     cursor: pointer;
     display: inline;
-    color: #FFFEFD; }
+    font-weight: bold;
+    padding: 10px;
+    text-transform: uppercase; }
