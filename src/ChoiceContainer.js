@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
-import Choice1 from "./Choice1.js";
-import Choice2 from "./Choice2.js";
-import Choice3 from "./Choice3.js";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+//import ReactTransitionGroup from "react-addons-transition-group"
 
+import Intro from "./Intro"
+import GiftResponses from "./GiftResponses";
+import InvitationExcuses from "./InvitationExcuses";
+import SeasonsGreetings from "./SeasonsGreetings";
+import Share from "./Share"
+
+// function FirstChild(props) {
+//   const childrenArray = React.Children.toArray(props.children);
+//   return childrenArray[0] || null
+// }
 
 class ChoiceContainer extends Component {
+ 
   state = {
     choice: "none"
   }
@@ -12,14 +22,53 @@ class ChoiceContainer extends Component {
     this.setState({ choice })
   }
   render() {
+    // const style = {
+    //   GiftResponses: {
+    //     backgroundColor: "#70257F"
+    //   }, 
+    //   InvitationExcuses: {
+    //     backgroundColor: "#257F6D"
+    //   },
+    //   SeasonsGreetings: {
+    //     backgroundColor: "#7F1413"
+    //   }
+    // }
+    
+      // const classnames = function() {
+      //   switch(this.state.choice){
+      //     case "GiftResponses": 
+      //       return "content-container-GiftResponses";
+      //     case "InvitationExcuses": 
+      //       return "content-container-InvitationExcuses";
+      //     case "SeasonsGreetings": 
+      //       return "content-container-SeasonsGreetings";
+      //      case "none":
+      //      default:
+      //       return "content-container-start";
+      //   }
+      // }
+
+    let cssClasses = `content-container ${this.state.choice}`
     return (
-      <div>
-        <div onClick={this.handleChoiceClick.bind(this, "choice1")} className="choice-toggle">Choice 1</div>
-        <div onClick={this.handleChoiceClick.bind(this, "choice2")} className="choice-toggle">Choice 2</div>
-        <div onClick={this.handleChoiceClick.bind(this, "choice3")} className="choice-toggle">Choice 3</div>
-        { this.state.choice==="choice1" && <Choice1 /> }
-        { this.state.choice==="choice2" && <Choice2 /> }
-        { this.state.choice==="choice3" && <Choice3 /> }
+      <div 
+        className={cssClasses}>
+        { this.state.choice==="none" && <Intro className="intro" key={0}/> }
+        <div className="toggle-container">
+          <div onClick={this.handleChoiceClick.bind(this, "gift-responses")} className="choice-toggle">Gift Responses</div>
+          <div onClick={this.handleChoiceClick.bind(this, "invitation-excuses")} className="choice-toggle">Invitation Excuses</div>
+          <div onClick={this.handleChoiceClick.bind(this, "seasons-greetings")} className="choice-toggle">Seasons Greetings</div>
+        </div>
+         <ReactCSSTransitionGroup
+          transitionName="fade"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+         >
+          { this.state.choice==="gift-responses" && <GiftResponses key={1} /> }
+          { this.state.choice==="invitation-excuses" && <InvitationExcuses key={2} /> }
+          { this.state.choice==="seasons-greetings" && <SeasonsGreetings key={3} /> }
+        </ReactCSSTransitionGroup>
       </div>
 
     )

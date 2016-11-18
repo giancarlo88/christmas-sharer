@@ -1,33 +1,102 @@
-body, html {
-  width: 100%;
+body, html, #root, .App, .content-container {
   height: 100%;
+  text-align: center;
+  font-family: Georgia, Times, Times New Roman, serif;
+
+}
+
+.content-container {
+  padding: 10px;
+  transition: all 5s ease;
+  will-change: background-color;
+
+    &.none {
+    background-color: #F4F4F4;  // Need to be gradients
+
+      .toggle-container {
+        min-height: 70%;
+        align-items: flex-start;
+      }
+  }
+
+  &.gift-responses {
+    background-color: #EE3E4C
+  }
+
+  &.invitation-excuses {
+    background-color: #665EC1 
+  }
+
+  &.seasons-greetings {
+    background-color: #64BD71
+  }
+
+  .intro {
+    height: 30%;
+    margin: 0 auto;
+    width: 40%;
+  }
+}
+
+.choice-contents {
+  background-color: #FFFEFD;
+  border-radius: 10px;
+  padding: 50px; 
+  box-shadow: 0px 7px 8px 0px #32323C
 }
 
 .choice-container {
-  height: 100%;
+  align-items: center;
+  display: flex;
+  height: 70%;
+  justify-content: center;
+  transition: all .5s ease;
 }
 
-.App {
-  text-align: center;
+.fade-enter {
+  opacity: 0;
+
+  &.fade-enter-active {
+    opacity: 1;
+    transition: all 1s ease-in-out;
+  }
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.fade-appear {
+  opacity: 0;
+
+  &.fade-appear-active {
+    opacity: 1;
+    transition: all 1s ease-in-out;
+  }
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+
+.fade-leave {
+  opacity: 1;
+
+  &.face-leave-active {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+  }
 }
 
-.App-intro {
-  font-size: large;
+.toggle-container {
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+  min-height: 30%;
+  justify-content: space-around;
+  width: 50%;
+  transition: all 1s ease-in-out;
+
+  .choice-toggle {
+    color: #171615;
+    cursor: pointer;
+    display: inline;
+    font-weight: bold;
+    padding: 10px;
+    text-transform: uppercase;
+  }
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
