@@ -11,7 +11,13 @@ constructor(props){
     data: ""
   }
 }
- componentDidMount(){
+componentWillAppear(callback){
+  console.log("appear")
+}
+componentWillLeave(callback){
+  console.log("disappear")
+}
+ componentDidMount(callback){
    $.ajax({
     url: "http://pokeapi.co/api/v2/pokemon/"+Math.floor(Math.random() * 150),
     success: function(data) {

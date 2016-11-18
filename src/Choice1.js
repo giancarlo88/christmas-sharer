@@ -1,12 +1,19 @@
 import $ from 'jquery'
 import React, { Component } from 'react';
 import ChoiceContents from "./ChoiceContents.js";
+
 class Choice1 extends Component  {
 constructor(props){
   super(props)
   this.state = {
     data: ""
   }
+}
+componentWillAppear(callback){
+  console.log("appear")
+}
+componentWillLeave(callback){
+  console.log("disappear")
 }
  componentDidMount(){
    $.ajax({
@@ -18,8 +25,10 @@ constructor(props){
  }
 render() {
   return (
+    
   <div className="choice-container">
-    <ChoiceContents data={this.state.data}/> 
+   
+    <ChoiceContents data={this.state.data}/>
   </div>
   )
 }

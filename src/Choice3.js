@@ -7,6 +7,12 @@ class Choice3 extends Component  {
   state = {
     data:  ""
   }
+componentDidAppear(callback){
+  console.log("appear")
+}
+componentWillLeave(callback){
+  console.log("disappear")
+}
  componentDidMount(){
  $.ajax({
     url: "http://numbersapi.com/random",
