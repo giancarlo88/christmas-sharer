@@ -1,13 +1,13 @@
 import React, { Component } from "react"
 
 class Intro extends Component {
-
   render () {
    return( 
   <div className="intro">
     <h2>Christmas Already?!</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>
+      <p>Yes. It’s that time of year for good will to all men and women, too much delicious food, surviving annual social gatherings with 
+      people you only half know, and almost earn an Oscar with both the true and faux happiness you respond to gifts with.</p>
+      <p>Sounds stressful, so heres some help.</p>
     </div>
    )
   }

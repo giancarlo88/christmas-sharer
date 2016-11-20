@@ -1,71 +1,194 @@
+@font-face {
+  font-family: "Charter";
+  src: url("/../assets/Charter.ttc") format("ttc"); }
+
+@font-face {
+  font-family: "DK Saffron Walden";
+  src: url("/../assets/DK Saffron Walden.otf") format("otf"); }
+
 body, html, #root, .App, .content-container {
+  position: relative;
   height: 100%;
   text-align: center;
-  font-family: Georgia, Times, Times New Roman, serif; }
+  font-family: "Charter", Georgia, 'Times New Roman', Times, serif; }
 
 .content-container {
   padding: 10px;
-  transition: all 5s ease;
-  will-change: background-color; }
+  transition: background-color 2s ease-in-out;
+  will-change: background-color;
+  overflow: hidden; }
+  .content-container h2 {
+    font-size: 23px;
+    text-transform: uppercase; }
+  .content-container p {
+    font-size: 14px; }
+  .content-container .share-container {
+    transform: translateY(2000px);
+    transition: all .5s ease-in-out; }
   .content-container.none {
     background-color: #F4F4F4; }
+    .content-container.none .intro {
+      transform: translateY(0);
+      transition: all 10s ease-in-out; }
     .content-container.none .toggle-container {
-      min-height: 70%;
-      align-items: flex-start; }
+      height: 40%;
+      transform: translateY(40%); }
+    .content-container.none > .share-container {
+      transform: none;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      height: 121px; }
+      @media (max-width: 768px) {
+        .content-container.none > .share-container {
+          bottom: 5%; } }
+      .content-container.none > .share-container .share-box {
+        /*background-color: #FFF;*/
+        background-image: url(../assets/share_tag.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 300px;
+        margin: 0 auto; }
+      .content-container.none > .share-container.share-quote {
+        top: 0;
+        height: 100%; }
   .content-container.gift-responses {
-    background-color: #EE3E4C; }
+    background-color: #EE3E4C;
+    border-color: #EE3E4C; }
+    .content-container.gift-responses .choice-toggle {
+      background-color: #EE3E4C;
+      border-color: #EE3E4C; }
+    .content-container.gift-responses .pattern-container {
+      margin-top: 15%;
+      height: 80%;
+      width: 100%;
+      position: absolute;
+      background-size: 100px;
+      background-image: url(../assets/grid_diagonals.svg); }
   .content-container.invitation-excuses {
     background-color: #665EC1; }
+    .content-container.invitation-excuses .choice-toggle {
+      background-color: #665EC1;
+      border-color: #665EC1; }
+    .content-container.invitation-excuses .pattern-container {
+      margin-top: 15%;
+      height: 80%;
+      width: 100%;
+      position: absolute;
+      background-size: 100px;
+      background-image: url(../assets/grid_zigzag.svg); }
   .content-container.seasons-greetings {
     background-color: #64BD71; }
+    .content-container.seasons-greetings .choice-toggle {
+      background-color: #64BD71;
+      border-color: #64BD71; }
+    .content-container.seasons-greetings .pattern-container {
+      margin-top: 15%;
+      height: 80%;
+      width: 100%;
+      position: absolute;
+      background-size: 100px;
+      background-image: url(../assets/grid_crosses.svg); }
   .content-container .intro {
-    height: 30%;
+    transform: translateY(-200%);
     margin: 0 auto;
-    width: 40%; }
+    width: 40%;
+    transition: all .5s ease-in-out; }
+    .content-container .intro.fade-leave {
+      height: 30%;
+      transition: all .5s ease-in-out; }
+      .content-container .intro.fade-leave.fade-leave-active {
+        height: 0; }
+    @media (max-width: 768px) {
+      .content-container .intro {
+        width: 100%; } }
 
 .choice-contents {
   background-color: #FFFEFD;
   border-radius: 10px;
-  padding: 50px;
-  box-shadow: 0px 7px 8px 0px #32323C; }
+  max-height: 200px;
+  max-width: 500px;
+  padding: 25px;
+  box-shadow: 0px 7px 8px 0px #32323C;
+  z-index: 2; }
 
 .choice-container {
   align-items: center;
   display: flex;
-  height: 70%;
+  flex-direction: column;
+  height: 55%;
   justify-content: center;
-  transition: all .5s ease; }
+  position: absolute;
+  left: 0;
+  transition: all .5s ease;
+  width: 100%; }
+  .choice-container button {
+    appearance: none;
+    background: transparent;
+    border-radius: 20px;
+    margin: 30px; }
+  .choice-container .share-container {
+    transform: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: 500px; }
 
 .fade-enter {
   opacity: 0; }
   .fade-enter.fade-enter-active {
     opacity: 1;
-    transition: all 1s ease-in-out; }
+    transition: all .5s ease-in-out; }
 
 .fade-appear {
   opacity: 0; }
   .fade-appear.fade-appear-active {
     opacity: 1;
-    transition: all 1s ease-in-out; }
+    transition: all .5s ease-in-out; }
 
 .fade-leave {
   opacity: 1; }
-  .fade-leave.face-leave-active {
+  .fade-leave.fade-leave-active {
     opacity: 0;
-    transition: all 1s ease-in-out; }
+    transition: all .5s ease-in-out; }
+
+.hidden {
+  opacity: 0;
+  z-index: -1; }
+
+.share-box {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto; }
+  .share-box .icon-container svg {
+    font-size: 40px; }
 
 .toggle-container {
   align-items: center;
   display: flex;
   margin: 0 auto;
-  min-height: 30%;
+  height: 0;
   justify-content: space-around;
-  width: 50%;
+  position: relative;
+  top: -15%;
   transition: all 1s ease-in-out; }
   .toggle-container .choice-toggle {
+    border: 24px solid transparent;
     color: #171615;
     cursor: pointer;
-    display: inline;
-    font-weight: bold;
-    padding: 10px;
-    text-transform: uppercase; }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 175px;
+    width: 175px;
+    transition: all 2s ease-in-out; }
+    .toggle-container .choice-toggle.gift-responses {
+      background-image: url(../assets/cta_diagonals.svg); }
+    .toggle-container .choice-toggle.seasons-greetings {
+      background-image: url(../assets/cta_crosses.svg); }
+    .toggle-container .choice-toggle.invitation-excuses {
+      background-image: url(../assets/cta_zigzag.svg); }
