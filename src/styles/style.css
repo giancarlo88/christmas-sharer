@@ -1,10 +1,9 @@
 @font-face {
-  font-family: "Charter";
-  src: url("/../assets/Charter.ttc") format("ttc"); }
-
-@font-face {
-  font-family: "DK Saffron Walden";
-  src: url("/../assets/DK Saffron Walden.otf") format("otf"); }
+  font-family: 'DK Saffron Walden';
+  src: url("../assets/DKSaffronWalden.eot");
+  src: url("../assets/DKSaffronWalden.eot?#iefix") format("embedded-opentype"), url("../assets/DKSaffronWalden.woff") format("woff"), url("../assets/DKSaffronWalden.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
 
 body, html, #root, .App, .content-container {
   position: relative;
@@ -13,7 +12,7 @@ body, html, #root, .App, .content-container {
   font-family: "Charter", Georgia, 'Times New Roman', Times, serif; }
 
 .content-container {
-  padding: 10px;
+  padding: 0 10px;
   transition: background-color 2s ease-in-out;
   will-change: background-color;
   overflow: hidden; }
@@ -31,8 +30,8 @@ body, html, #root, .App, .content-container {
       transform: translateY(0);
       transition: all 10s ease-in-out; }
     .content-container.none .toggle-container {
-      height: 40%;
-      transform: translateY(40%); }
+      height: 50%;
+      transform: translateY(50%); }
     .content-container.none > .share-container {
       transform: none;
       bottom: 0;
@@ -106,7 +105,7 @@ body, html, #root, .App, .content-container {
       background-color: #64BD71;
       border-color: #64BD71; }
     .content-container.seasons-greetings .choice-contents {
-      background-image: url(/static/media/holly.64748667.svg), url(/static/media/bubble_desktop.c6c7f8e7.svg);
+      background-image: url(../assets/holly.svg), url(../assets/bubble_desktop.svg);
       background-size: 55% 60%, 550px 310px;
       background-repeat: no-repeat;
       background-position-x: -40%, center;
@@ -141,14 +140,22 @@ body, html, #root, .App, .content-container {
   height: 200px;
   padding: 25px;
   z-index: 2;
-  line-height: 180px;
-  top: 85px; }
+  top: 85px;
+  font-family: "DK Saffron Walden", sans-serif;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .choice-contents p {
+    margin-top: -20px;
+    width: 60%;
+    font-size: 24px; }
 
 .choice-container {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 55%;
+  height: 60%;
   justify-content: center;
   position: absolute;
   left: 0;
@@ -205,6 +212,9 @@ body, html, #root, .App, .content-container {
   width: 275px;
   margin: 0 auto; }
   .share-box p {
+    color: #F4F4F4;
+    font-size: 16px; }
+  .share-box .top-text {
     position: absolute;
     width: 100%;
     top: 0; }

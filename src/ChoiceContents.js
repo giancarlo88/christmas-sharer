@@ -7,7 +7,7 @@ class ChoiceContents extends Component {
     return (
   
       <div className="choice-contents">
-        {this.props.data} 
+        <p>{this.props.data}</p>
       </div>
     )
   }  

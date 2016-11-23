@@ -34,9 +34,7 @@ render() {
   return (
     
   <div className={classNames}>
-    <ChoiceContents data={this.state.data}>
-    </ChoiceContents>
-    <button onClick={this.callAPI.bind(this)}>Another one!</button>
+    <ChoiceContents data={this.state.data}/>
     <Share active={this.state.active}/>
   </div>
   )

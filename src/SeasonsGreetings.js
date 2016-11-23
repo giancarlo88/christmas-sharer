@@ -33,7 +33,6 @@ componentDidMount(){
     return (
       <div className={classNames}>
        <ChoiceContents data={this.state.data}/>
-        <button onClick={this.callAPI.bind(this)}>Another one!</button>
         <Share active={this.state.active}/>
       </div>
     )

@@ -18,9 +18,10 @@ componentWillReceiveProps(props){
     return(
       <div className={classNames}>
         <div className="share-box">
-          {this.state.active === "none" && <p>Share the F**tive out of this</p> }
-          {this.state.active !== "none" && <p>Shake that festive mouse of yours to get something new</p> }
+          {this.state.active === "none" && <div className="top-text"><p>Share the F**tive out of this</p></div> }
+          {this.state.active !== "none" && <div className="top-text"><p>Shake that festive mouse of yours to get something new</p></div> }
           <div className="icon-container">
+          {this.state.active !== "none" && <div className=""><p>Has someone come to mind?<br/>Or is this you all over?</p></div>}
             <TiSocialFacebook/>
             <TiSocialTwitter/>
             <TiSocialPinterest/>
