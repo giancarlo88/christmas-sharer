@@ -9,14 +9,25 @@
 }
 
 
-@mixin background-pattern(){
-     margin-top: 100px;
-     height: 100%;
-     width: 100%;
-     position: absolute;
-     left: 0;
-     background-size: 100px; 
+@mixin transition() {
+  transition: all 2s ease-in-out;
 }
+
+@mixin background-text($text, $colour) {
+  content: $text;
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 20%;
+  font-size: 300px;
+  font-weight: bold;
+  color: $colour;
+  text-align: left;
+  @include transition();
+}
+
+$colour-text: #171615;
+$colour-background-home: #F4F4F4;
 
 
 body, html, #root, .App, .content-container {
@@ -27,9 +38,20 @@ body, html, #root, .App, .content-container {
 }
 
 
+.pattern-container {
+    margin-top: 100px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    background-size: 100px; 
+    opacity: 0;
+  @include transition();
+}
+
 .content-container {
   padding: 0 10px;
-  transition: background-color 2s ease-in-out;
+  @include transition();
   will-change: background-color;
   overflow: hidden;
 
@@ -41,32 +63,33 @@ body, html, #root, .App, .content-container {
   p {
     font-size: 14px;
   }
+  
 
   .share-container { //hidden state after option is selected
     transform: translateY(2000px);
-    transition: all .5s ease-in-out;
-  }
+  @include transition();
+    opacity: 0;
+    }
 
-    &.none {
-    background-color: #F4F4F4;  // Need to be gradients
+  &.none {
+    background-color: $colour-background-home; // Need to be gradients
 
       .intro {
         transform: translateY(0);
-        transition: all 10s ease-in-out;
+        @include transition();
       }
-
-      .toggle-container {
-        height: 50%;
-        transform: translateY(50%)
-      }
+  .toggle-container  {
+        transform: translateY(175%)
+    }
 
   &>.share-container { //State when homepage is loaded
     transform: none;
-    bottom: 0;
+    bottom: 20px;
     left:0;
     position: absolute;
     width: 100%;
     height: 121px;
+    opacity: 1;
 
     @media(max-width: 768px){
       bottom: 5%;
@@ -84,6 +107,10 @@ body, html, #root, .App, .content-container {
       height: 120px;
       margin: 0 auto;
 
+      p, .icon-container {
+              color: #171615;
+      }
+
       .icon-container {
         bottom: 0;
       }
@@ -92,18 +119,16 @@ body, html, #root, .App, .content-container {
   &.share-quote {
     top: 0;
     height: 100%;
-
-   
   }
         }
       
   }
 
-  &.gift-responses {
+&.gift-responses {
     background-color: #EE3E4C;
     border-color: #EE3E4C;
 
-    .choice-toggle {
+    .toggle-button-container .choice-toggle {
     background-color: #EE3E4C;
     border-color: #EE3E4C;
     }
@@ -121,9 +146,12 @@ body, html, #root, .App, .content-container {
     }
 
   .pattern-container {
-    @include background-pattern();
+    opacity: 1;
     background-image: url(../assets/grid_diagonals.svg);
-    
+     &:before {
+      @include background-text("GIFT RESPONSES", #EE3E4C)
+    }
+
     }
 
   }
@@ -131,7 +159,7 @@ body, html, #root, .App, .content-container {
   &.invitation-excuses {
     background-color: #665EC1;
 
-    .choice-toggle {
+     .toggle-button-container .choice-toggle {
     background-color: #665EC1;
     border-color: #665EC1;
     }
@@ -145,8 +173,12 @@ body, html, #root, .App, .content-container {
     }
     
     .pattern-container {
-    @include background-pattern();
+    opacity: 1;
     background-image: url(../assets/grid_zigzag.svg);
+
+      &:before {
+       @include background-text("INVITATION EXCUSES", #665EC1)
+      }
     }
 
     .choice-container .share-box {
@@ -158,8 +190,7 @@ body, html, #root, .App, .content-container {
   &.seasons-greetings {
     background-color: #64BD71;
 
-
-    .choice-toggle {
+    .toggle-button-container .choice-toggle {
     background-color: #64BD71;
     border-color: #64BD71;
     }
@@ -178,8 +209,11 @@ body, html, #root, .App, .content-container {
     }
     
     .pattern-container {
-    @include background-pattern();
+    opacity: 1;
     background-image: url(../assets/grid_crosses.svg);
+    &:before {
+       @include background-text("SEASONS GREETINGS", #64BD71)
+      }
     }
   }
 
@@ -187,13 +221,13 @@ body, html, #root, .App, .content-container {
     transform: translateY(-200%);
     margin: 0 auto;
     width: 40%;
-    transition: all .5s ease-in-out;
+    @include transition();
 
 
 
   &.fade-leave {
   height: 30%;
-  transition: all .5s ease-in-out;
+  @include transition();
 
 
   &.fade-leave-active {
@@ -233,12 +267,12 @@ body, html, #root, .App, .content-container {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 60%;
+  height: 375px;
   justify-content: center;
   position: absolute;
   left: 0;
   top: 35%;
-  transition: all .5s ease;
+  @include transition();
   width: 100%;
 
   button {
@@ -258,7 +292,8 @@ body, html, #root, .App, .content-container {
     height: 100%;
     width: 100%;
     top: 30px;
-    
+    opacity: 1;
+    @include transition();
   }
 }
 
@@ -268,7 +303,7 @@ body, html, #root, .App, .content-container {
 
   &.fade-enter-active {
     opacity: 1;
-    transition: all .5s ease-in-out;
+    @include transition();
 
   }
 }
@@ -279,7 +314,7 @@ body, html, #root, .App, .content-container {
 
   &.fade-appear-active {
     opacity: 1;
-      transition: all .5s ease-in-out;
+    @include transition();
 
   }
 }
@@ -291,7 +326,7 @@ body, html, #root, .App, .content-container {
 
   &.fade-leave-active {
     opacity: 0;
-    transition: all .5s ease-in-out;
+    @include transition();
 
   }
 }
@@ -316,9 +351,10 @@ body, html, #root, .App, .content-container {
       height:350px;
       width: 275px;
       margin: 0 auto;
+      @include transition();
 
       p {
-        color: #F4F4F4;
+        color: $colour-background-home;
         font-size: 16px;
       }
 
@@ -330,6 +366,7 @@ body, html, #root, .App, .content-container {
 
 
       .icon-container {
+        color: $colour-background-home;
         position: absolute;
         bottom: 30px;
         width: 100%;
@@ -340,14 +377,23 @@ body, html, #root, .App, .content-container {
     }
 
 .toggle-container {
+  transform: translateY(0);
   align-items: center;
   display: flex;
   margin: 0 auto;
   top: 0;
-  justify-content: space-around;
+  //justify-content: space-around;
   position: absolute;
-  transition: all 1s ease-in-out;
+  @include transition();
   width: 100%;
+  height:auto;
+
+  .toggle-button-container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
 
   .choice-toggle {
     border: 24px solid transparent;
@@ -358,7 +404,7 @@ body, html, #root, .App, .content-container {
     justify-content: center;
     height: 175px;
     width: 175px;
-    transition: all 2s ease-in-out;
+    @include transition();
 
     &.gift-responses {
       background-image: url(../assets/cta_diagonals.svg)
@@ -372,6 +418,7 @@ body, html, #root, .App, .content-container {
       background-image: url(../assets/cta_zigzag.svg);
     }
 
+  }
   }
 }
 

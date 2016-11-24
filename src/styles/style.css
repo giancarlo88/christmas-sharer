@@ -11,9 +11,19 @@ body, html, #root, .App, .content-container {
   text-align: center;
   font-family: "Charter", Georgia, 'Times New Roman', Times, serif; }
 
+.pattern-container {
+  margin-top: 100px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  background-size: 100px;
+  opacity: 0;
+  transition: all 2s ease-in-out; }
+
 .content-container {
   padding: 0 10px;
-  transition: background-color 2s ease-in-out;
+  transition: all 2s ease-in-out;
   will-change: background-color;
   overflow: hidden; }
   .content-container h2 {
@@ -23,22 +33,23 @@ body, html, #root, .App, .content-container {
     font-size: 14px; }
   .content-container .share-container {
     transform: translateY(2000px);
-    transition: all .5s ease-in-out; }
+    transition: all 2s ease-in-out;
+    opacity: 0; }
   .content-container.none {
     background-color: #F4F4F4; }
     .content-container.none .intro {
       transform: translateY(0);
-      transition: all 10s ease-in-out; }
+      transition: all 2s ease-in-out; }
     .content-container.none .toggle-container {
-      height: 50%;
-      transform: translateY(50%); }
+      transform: translateY(175%); }
     .content-container.none > .share-container {
       transform: none;
-      bottom: 0;
+      bottom: 20px;
       left: 0;
       position: absolute;
       width: 100%;
-      height: 121px; }
+      height: 121px;
+      opacity: 1; }
       @media (max-width: 768px) {
         .content-container.none > .share-container {
           bottom: 5%; } }
@@ -51,6 +62,8 @@ body, html, #root, .App, .content-container {
         width: 300px;
         height: 120px;
         margin: 0 auto; }
+        .content-container.none > .share-container .share-box p, .content-container.none > .share-container .share-box .icon-container {
+          color: #171615; }
         .content-container.none > .share-container .share-box .icon-container {
           bottom: 0; }
       .content-container.none > .share-container.share-quote {
@@ -59,7 +72,7 @@ body, html, #root, .App, .content-container {
   .content-container.gift-responses {
     background-color: #EE3E4C;
     border-color: #EE3E4C; }
-    .content-container.gift-responses .choice-toggle {
+    .content-container.gift-responses .toggle-button-container .choice-toggle {
       background-color: #EE3E4C;
       border-color: #EE3E4C; }
     .content-container.gift-responses .choice-contents {
@@ -71,16 +84,22 @@ body, html, #root, .App, .content-container {
     .content-container.gift-responses .choice-container .share-box {
       background-color: #EE3E4C; }
     .content-container.gift-responses .pattern-container {
-      margin-top: 100px;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      background-size: 100px;
+      opacity: 1;
       background-image: url(../assets/grid_diagonals.svg); }
+      .content-container.gift-responses .pattern-container:before {
+        content: "GIFT RESPONSES";
+        position: absolute;
+        z-index: 0;
+        left: 0;
+        top: 20%;
+        font-size: 300px;
+        font-weight: bold;
+        color: #EE3E4C;
+        text-align: left;
+        transition: all 2s ease-in-out; }
   .content-container.invitation-excuses {
     background-color: #665EC1; }
-    .content-container.invitation-excuses .choice-toggle {
+    .content-container.invitation-excuses .toggle-button-container .choice-toggle {
       background-color: #665EC1;
       border-color: #665EC1; }
     .content-container.invitation-excuses .choice-contents {
@@ -90,18 +109,24 @@ body, html, #root, .App, .content-container {
       background-position-x: -20%, center;
       background-position-y: -21%, center; }
     .content-container.invitation-excuses .pattern-container {
-      margin-top: 100px;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      background-size: 100px;
+      opacity: 1;
       background-image: url(../assets/grid_zigzag.svg); }
+      .content-container.invitation-excuses .pattern-container:before {
+        content: "INVITATION EXCUSES";
+        position: absolute;
+        z-index: 0;
+        left: 0;
+        top: 20%;
+        font-size: 300px;
+        font-weight: bold;
+        color: #665EC1;
+        text-align: left;
+        transition: all 2s ease-in-out; }
     .content-container.invitation-excuses .choice-container .share-box {
       background-color: #665EC1; }
   .content-container.seasons-greetings {
     background-color: #64BD71; }
-    .content-container.seasons-greetings .choice-toggle {
+    .content-container.seasons-greetings .toggle-button-container .choice-toggle {
       background-color: #64BD71;
       border-color: #64BD71; }
     .content-container.seasons-greetings .choice-contents {
@@ -114,21 +139,27 @@ body, html, #root, .App, .content-container {
     .content-container.seasons-greetings .choice-container .share-box {
       background-color: #64BD71; }
     .content-container.seasons-greetings .pattern-container {
-      margin-top: 100px;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      background-size: 100px;
+      opacity: 1;
       background-image: url(../assets/grid_crosses.svg); }
+      .content-container.seasons-greetings .pattern-container:before {
+        content: "SEASONS GREETINGS";
+        position: absolute;
+        z-index: 0;
+        left: 0;
+        top: 20%;
+        font-size: 300px;
+        font-weight: bold;
+        color: #64BD71;
+        text-align: left;
+        transition: all 2s ease-in-out; }
   .content-container .intro {
     transform: translateY(-200%);
     margin: 0 auto;
     width: 40%;
-    transition: all .5s ease-in-out; }
+    transition: all 2s ease-in-out; }
     .content-container .intro.fade-leave {
       height: 30%;
-      transition: all .5s ease-in-out; }
+      transition: all 2s ease-in-out; }
       .content-container .intro.fade-leave.fade-leave-active {
         height: 0; }
     @media (max-width: 768px) {
@@ -155,12 +186,12 @@ body, html, #root, .App, .content-container {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 60%;
+  height: 375px;
   justify-content: center;
   position: absolute;
   left: 0;
   top: 35%;
-  transition: all .5s ease;
+  transition: all 2s ease-in-out;
   width: 100%; }
   .choice-container button {
     appearance: none;
@@ -176,25 +207,27 @@ body, html, #root, .App, .content-container {
     left: 0;
     height: 100%;
     width: 100%;
-    top: 30px; }
+    top: 30px;
+    opacity: 1;
+    transition: all 2s ease-in-out; }
 
 .fade-enter {
   opacity: 0; }
   .fade-enter.fade-enter-active {
     opacity: 1;
-    transition: all .5s ease-in-out; }
+    transition: all 2s ease-in-out; }
 
 .fade-appear {
   opacity: 0; }
   .fade-appear.fade-appear-active {
     opacity: 1;
-    transition: all .5s ease-in-out; }
+    transition: all 2s ease-in-out; }
 
 .fade-leave {
   opacity: 1; }
   .fade-leave.fade-leave-active {
     opacity: 0;
-    transition: all .5s ease-in-out; }
+    transition: all 2s ease-in-out; }
 
 .hidden {
   opacity: 0;
@@ -210,7 +243,8 @@ body, html, #root, .App, .content-container {
   background-repeat: no-repeat;
   height: 350px;
   width: 275px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  transition: all 2s ease-in-out; }
   .share-box p {
     color: #F4F4F4;
     font-size: 16px; }
@@ -219,6 +253,7 @@ body, html, #root, .App, .content-container {
     width: 100%;
     top: 0; }
   .share-box .icon-container {
+    color: #F4F4F4;
     position: absolute;
     bottom: 30px;
     width: 100%; }
@@ -226,27 +261,34 @@ body, html, #root, .App, .content-container {
       font-size: 40px; }
 
 .toggle-container {
+  transform: translateY(0);
   align-items: center;
   display: flex;
   margin: 0 auto;
   top: 0;
-  justify-content: space-around;
   position: absolute;
-  transition: all 1s ease-in-out;
-  width: 100%; }
-  .toggle-container .choice-toggle {
-    border: 24px solid transparent;
-    color: #171615;
-    cursor: pointer;
+  transition: all 2s ease-in-out;
+  width: 100%;
+  height: auto; }
+  .toggle-container .toggle-button-container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 800px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 175px;
-    width: 175px;
-    transition: all 2s ease-in-out; }
-    .toggle-container .choice-toggle.gift-responses {
-      background-image: url(../assets/cta_diagonals.svg); }
-    .toggle-container .choice-toggle.seasons-greetings {
-      background-image: url(../assets/cta_crosses.svg); }
-    .toggle-container .choice-toggle.invitation-excuses {
-      background-image: url(../assets/cta_zigzag.svg); }
+    justify-content: space-between; }
+    .toggle-container .toggle-button-container .choice-toggle {
+      border: 24px solid transparent;
+      color: #171615;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 175px;
+      width: 175px;
+      transition: all 2s ease-in-out; }
+      .toggle-container .toggle-button-container .choice-toggle.gift-responses {
+        background-image: url(../assets/cta_diagonals.svg); }
+      .toggle-container .toggle-button-container .choice-toggle.seasons-greetings {
+        background-image: url(../assets/cta_crosses.svg); }
+      .toggle-container .toggle-button-container .choice-toggle.invitation-excuses {
+        background-image: url(../assets/cta_zigzag.svg); }
