@@ -19,17 +19,20 @@ $text-colour: #1D1E1B;
 $bubble-colour: #FFF;
 $banner-shadow: box-shadow(15px 15px 15px 15px $shadow);
 
-$gift-responses-gradient: linear-gradient(30deg, #F95A5A, #E24A6B);
+$gift-responses-gradient: #E24A6B;
+//$gift-responses-gradient: linear-gradient(30deg, #F95A5A, #E24A6B);
 $gift-responses-banner: #E24A6B;
 $gift-responses-toggle-button-faded: #AF3838;
 
-$seasons-greetings-gradient: linear-gradient(30deg, #88C685, #51BD6C);
+$seasons-greetings-gradient:#88C685;
+/*$seasons-greetings-gradient: linear-gradient(30deg, #88C685, #51BD6C);*/
 $seasons-greetings-banner: #88C685;
 $seasons-greetings-toggle-button-faded: #659160;
 
-$invitation-excuses-gradient: linear-gradient(30deg, #7583CC, #7C6ACC);
+$invitation-excuses-gradient: #7583CC;
+/*$invitation-excuses-gradient: linear-gradient(30deg, #7583CC, #7C6ACC);*/
 $invitation-excuses-banner: #7583CC;
-$invitation-excuses-toggle-button-faded: #4A4A77;
+$invitation-excuses-toggle-button-faded: #4A4A77; 
 
 
 /*Adapted from https://codepen.io/GhostRider/pen/FctLB/ */
@@ -89,6 +92,7 @@ body, html, #root, .App, .content-container {
   font-family: "Charter", Georgia, 'Times New Roman', Times, serif
 }
 
+
 .shake:hover, .shake:focus {
   animation: wiggle .2s infinite;
   opacity: 1;
@@ -119,29 +123,8 @@ body, html, #root, .App, .content-container {
   p {
     font-size: 14px;
   }
-  
 
-  .share-container { //hidden state after option is selected
-    transform: translateY(2000px);
-  @include transition();
-    opacity: 0;
-    }
-
-  &.none {
-    background-color: $home-background; // Need to be gradients
-
-      .intro {
-        transform: translateY(0);
-        @include transition();
-      }
-  .toggle-container  {
-        transform: translateY(100%);
-      .choice-toggle {
-        opacity: 1;
-    }
-  }
-
-  &>.share-container { //State when homepage is loaded
+   &>.share-container,  { //State when homepage is loaded
     transform: none;
     bottom: 20px;
     left:0;
@@ -149,6 +132,11 @@ body, html, #root, .App, .content-container {
     width: 100%;
     height: 121px;
     opacity: 1;
+
+    a, a:visited {
+      color: $text-colour;
+
+    }
 
     @media(max-width: 768px){
       bottom: 5%;
@@ -172,16 +160,42 @@ body, html, #root, .App, .content-container {
 
       .icon-container {
         bottom: 0;
+
+        p {
+          display: none;
+        }
       }
     }
+    }
+  
+  &.seasons-greetings,
+  &.invitation-excuses,
+  &.gift-responses {
+    .share-container.homepage { //hidden state after option is selected
+      @include transition();
+      transform: translateY(2000px);
+      opacity: 0;
+      }  
 
-  &.share-quote {
-    top: 0;
-    height: 100%;
+      a, a:visited {
+        color: $home-background;
+      }
   }
+
+ &.none {
+      background-color: $home-background; // Need to be gradients
+
+        .intro {
+          transform: translateY(0);
+          @include transition();
         }
-      
-  }
+    .toggle-container  {
+          transform: translateY(100%);
+        .choice-toggle {
+          opacity: 1;
+      }
+    }
+  } 
 
 &.gift-responses {
     background: $gift-responses-gradient;
@@ -419,6 +433,10 @@ body, html, #root, .App, .content-container {
   .choice-contents {
     transform: translateY(200%) !important; //Needed to override the class given by the current choice
     transition-delay: .5s
+  }
+
+  .share-box {
+    opacity: 0;
   }
 }
 

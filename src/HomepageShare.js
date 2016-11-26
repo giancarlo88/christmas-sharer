@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { TiSocialFacebook, TiSocialTwitter, TiSocialPinterest, TiMail } from "react-icons/lib/ti"
 
-class Share extends Component {
+class HomepageShare extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -10,8 +10,7 @@ class Share extends Component {
   }
 componentWillReceiveProps(props){
   this.setState({
-    active: props.active,
-    quote: props.quote
+    active: props.active
   })
 }
   render (){
@@ -20,11 +19,10 @@ componentWillReceiveProps(props){
     let pinterestLink = `https://pinterest.com/pin/create/button/?url=&media=&description=${this.state.quote}`
     let mailLink = `mailTo:body=${this.state.quote}`
     return(
-      <div className='share-container share-quote'>
+      <div className='share-container homepage'>
         <div className="share-box">
-         <div className="top-text"><p>Shake that festive mouse of yours to get something new</p></div>
+         <div className="top-text"><p>Share the F**tive out of this</p></div>
           <div className="icon-container">
-          <div className=""><p>Has someone come to mind?<br/>Or is this you all over?</p></div>
             <a target="_blank" href={facebookLink}><TiSocialFacebook/></a>
             <a target="_blank" href={twitterLink}><TiSocialTwitter/></a>
             <a target="_blank" href={pinterestLink}><TiSocialPinterest/></a>
@@ -37,4 +35,4 @@ componentWillReceiveProps(props){
   }
 }
 
-export default Share
+export default HomepageShare

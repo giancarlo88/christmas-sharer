@@ -5,6 +5,8 @@
   font-weight: normal;
   font-style: normal; }
 
+/*$seasons-greetings-gradient: linear-gradient(30deg, #88C685, #51BD6C);*/
+/*$invitation-excuses-gradient: linear-gradient(30deg, #7583CC, #7C6ACC);*/
 /*Adapted from https://codepen.io/GhostRider/pen/FctLB/ */
 @keyframes wiggle {
   0% {
@@ -60,10 +62,40 @@ body, html, #root, .App, .content-container {
     text-transform: uppercase; }
   .content-container p {
     font-size: 14px; }
-  .content-container .share-container {
-    transform: translateY(2000px);
+  .content-container > .share-container {
+    transform: none;
+    bottom: 20px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 121px;
+    opacity: 1; }
+    .content-container > .share-container a, .content-container > .share-container a:visited {
+      color: #1D1E1B; }
+    @media (max-width: 768px) {
+      .content-container > .share-container {
+        bottom: 5%; } }
+    .content-container > .share-container .share-box {
+      /*background-color: #FFF;*/
+      background-image: url(../assets/share_tag.svg);
+      mask-image: none;
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 300px;
+      height: 120px;
+      margin: 0 auto; }
+      .content-container > .share-container .share-box p, .content-container > .share-container .share-box .icon-container {
+        color: #1D1E1B; }
+      .content-container > .share-container .share-box .icon-container {
+        bottom: 0; }
+        .content-container > .share-container .share-box .icon-container p {
+          display: none; }
+  .content-container.seasons-greetings .share-container.homepage, .content-container.invitation-excuses .share-container.homepage, .content-container.gift-responses .share-container.homepage {
     transition: all 2s ease-in-out;
+    transform: translateY(2000px);
     opacity: 0; }
+  .content-container.seasons-greetings a, .content-container.seasons-greetings a:visited, .content-container.invitation-excuses a, .content-container.invitation-excuses a:visited, .content-container.gift-responses a, .content-container.gift-responses a:visited {
+    color: #F6F6F6; }
   .content-container.none {
     background-color: #F6F6F6; }
     .content-container.none .intro {
@@ -73,35 +105,8 @@ body, html, #root, .App, .content-container {
       transform: translateY(100%); }
       .content-container.none .toggle-container .choice-toggle {
         opacity: 1; }
-    .content-container.none > .share-container {
-      transform: none;
-      bottom: 20px;
-      left: 0;
-      position: absolute;
-      width: 100%;
-      height: 121px;
-      opacity: 1; }
-      @media (max-width: 768px) {
-        .content-container.none > .share-container {
-          bottom: 5%; } }
-      .content-container.none > .share-container .share-box {
-        /*background-color: #FFF;*/
-        background-image: url(../assets/share_tag.svg);
-        mask-image: none;
-        background-size: contain;
-        background-repeat: no-repeat;
-        width: 300px;
-        height: 120px;
-        margin: 0 auto; }
-        .content-container.none > .share-container .share-box p, .content-container.none > .share-container .share-box .icon-container {
-          color: #1D1E1B; }
-        .content-container.none > .share-container .share-box .icon-container {
-          bottom: 0; }
-      .content-container.none > .share-container.share-quote {
-        top: 0;
-        height: 100%; }
   .content-container.gift-responses {
-    background: linear-gradient(30deg, #F95A5A, #E24A6B);
+    background: #E24A6B;
     border-color: #E24A6B; }
     .content-container.gift-responses .toggle-button-container .choice-toggle {
       background-color: #E24A6B;
@@ -141,7 +146,7 @@ body, html, #root, .App, .content-container {
     .content-container.gift-responses .choice-toggle.gift-responses {
       opacity: 1; }
   .content-container.invitation-excuses {
-    background: linear-gradient(30deg, #7583CC, #7C6ACC); }
+    background: #7583CC; }
     .content-container.invitation-excuses .toggle-button-container .choice-toggle {
       background-color: #7583CC;
       border-color: #7583CC; }
@@ -180,7 +185,7 @@ body, html, #root, .App, .content-container {
     .content-container.invitation-excuses .choice-toggle.invitation-excuses {
       opacity: 1; }
   .content-container.seasons-greetings {
-    background: linear-gradient(30deg, #88C685, #51BD6C); }
+    background: #88C685; }
     .content-container.seasons-greetings .toggle-button-container .choice-toggle {
       background-color: #88C685;
       border-color: #88C685; }
@@ -305,6 +310,8 @@ body, html, #root, .App, .content-container {
   .hidden .choice-contents {
     transform: translateY(200%) !important;
     transition-delay: .5s; }
+  .hidden .share-box {
+    opacity: 0; }
 
 .share-box {
   display: flex;

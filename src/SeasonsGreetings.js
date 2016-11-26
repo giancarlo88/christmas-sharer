@@ -37,7 +37,7 @@ componentDidMount(){
     return (
       <div className={classNames}>
        <ChoiceContents data={this.state.data}/>
-        <Share active={this.state.active}/>
+        <Share quote={this.state.data} active={this.state.active}/>
       </div>
     )
   }
