@@ -14,10 +14,14 @@ constructor(props){
   }
 }
  callAPI(){
-   $.ajax({
-    url: "http://pokeapi.co/api/v2/pokemon/"+Math.floor(Math.random() * 150),
+    $.ajax({
+    url: 'data/invitationExcuses.json',
+    method: "GET",
+    dataType: "json",
     success: function(data) {
-      this.setState({data: data.name})
+      console.log(data)
+      let quote = data.quotes[Math.floor(Math.random()*data.quotes.length)]
+      this.setState({data: quote})
     }.bind(this)
   })
  }

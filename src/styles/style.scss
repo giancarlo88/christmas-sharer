@@ -8,6 +8,45 @@
 	font-style: normal;
 }
 
+//Need @font-face for Charter as well.
+
+$shadow: rgba(255, 255, 255, .15);
+$pattern-colour: rgba(255, 255, 255, .33);
+
+
+$home-background: #F6F6F6;
+$text-colour: #1D1E1B;
+$bubble-colour: #FFF;
+$banner-shadow: box-shadow(15px 15px 15px 15px $shadow);
+
+$gift-responses-gradient: linear-gradient(30deg, #F95A5A, #E24A6B);
+$gift-responses-banner: #E24A6B;
+$gift-responses-toggle-button-faded: #AF3838;
+
+$seasons-greetings-gradient: linear-gradient(30deg, #88C685, #51BD6C);
+$seasons-greetings-banner: #88C685;
+$seasons-greetings-toggle-button-faded: #659160;
+
+$invitation-excuses-gradient: linear-gradient(30deg, #7583CC, #7C6ACC);
+$invitation-excuses-banner: #7583CC;
+$invitation-excuses-toggle-button-faded: #4A4A77;
+
+
+/*Adapted from https://codepen.io/GhostRider/pen/FctLB/ */
+
+@keyframes wiggle {
+	0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
 
 @mixin transition() {
   transition: all 2s ease-in-out;
@@ -18,16 +57,29 @@
   position: absolute;
   z-index: 0;
   left: 0;
+  opacity: .75;
   top: 20%;
-  font-size: 300px;
+  font-size: 200px;
   font-weight: bold;
   color: $colour;
   text-align: left;
+  font-family: "DK Saffron Walden", sans-serif;  
   @include transition();
+
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
 }
 
-$colour-text: #171615;
-$colour-background-home: #F4F4F4;
+
+  /*transition-delay: 2.5s;*/
+}
+
+
 
 
 body, html, #root, .App, .content-container {
@@ -37,6 +89,10 @@ body, html, #root, .App, .content-container {
   font-family: "Charter", Georgia, 'Times New Roman', Times, serif
 }
 
+.shake:hover, .shake:focus {
+  animation: wiggle .2s infinite;
+  opacity: 1;
+}
 
 .pattern-container {
     margin-top: 100px;
@@ -72,15 +128,18 @@ body, html, #root, .App, .content-container {
     }
 
   &.none {
-    background-color: $colour-background-home; // Need to be gradients
+    background-color: $home-background; // Need to be gradients
 
       .intro {
         transform: translateY(0);
         @include transition();
       }
   .toggle-container  {
-        transform: translateY(175%)
+        transform: translateY(100%);
+      .choice-toggle {
+        opacity: 1;
     }
+  }
 
   &>.share-container { //State when homepage is loaded
     transform: none;
@@ -108,7 +167,7 @@ body, html, #root, .App, .content-container {
       margin: 0 auto;
 
       p, .icon-container {
-              color: #171615;
+              color: $text-colour;
       }
 
       .icon-container {
@@ -125,12 +184,12 @@ body, html, #root, .App, .content-container {
   }
 
 &.gift-responses {
-    background-color: #EE3E4C;
-    border-color: #EE3E4C;
+    background: $gift-responses-gradient;
+    border-color: $gift-responses-banner;
 
     .toggle-button-container .choice-toggle {
-    background-color: #EE3E4C;
-    border-color: #EE3E4C;
+    background-color: $gift-responses-banner;
+    border-color: $gift-responses-banner;
     }
 
   .choice-contents {
@@ -139,37 +198,44 @@ body, html, #root, .App, .content-container {
     background-repeat: no-repeat;
     background-position-x: -20%, center;
     background-position-y: -2%, center;
+    transform: translateY(0)
     }
 
-    .choice-container .share-box {
-      background-color: #EE3E4C;
+
+  .choice-container .share-box {
+      background-color: $gift-responses-banner;
     }
 
   .pattern-container {
     opacity: 1;
     background-image: url(../assets/grid_diagonals.svg);
      &:before {
-      @include background-text("GIFT RESPONSES", #EE3E4C)
+      @include background-text("GIFT RESPONSES", $gift-responses-banner)
     }
 
+    }
+
+    .choice-toggle.gift-responses {
+      opacity: 1;
     }
 
   }
 
   &.invitation-excuses {
-    background-color: #665EC1;
+    background: $invitation-excuses-gradient;
 
-     .toggle-button-container .choice-toggle {
-    background-color: #665EC1;
-    border-color: #665EC1;
+    .toggle-button-container .choice-toggle {
+    background-color: $invitation-excuses-banner;
+    border-color: $invitation-excuses-banner;;
     }
 
-    .choice-contents {
+  .choice-contents {
     background-image: url(../assets/reindeer.svg), url(../assets/bubble_desktop.svg);
     background-size: 50% 50%, 550px 310px;
     background-repeat: no-repeat;
     background-position-x: -20%, center;
     background-position-y: -21%, center;
+    transform: translateY(0);
     }
     
     .pattern-container {
@@ -177,22 +243,25 @@ body, html, #root, .App, .content-container {
     background-image: url(../assets/grid_zigzag.svg);
 
       &:before {
-       @include background-text("INVITATION EXCUSES", #665EC1)
+       @include background-text("INVITATION EXCUSES", $invitation-excuses-banner)
       }
     }
 
-    .choice-container .share-box {
-      background-color: #665EC1;
-    }
+  .choice-container .share-box {
+      background-color: $invitation-excuses-banner;;
+  }
 
+  .choice-toggle.invitation-excuses {
+      opacity: 1;
+    }
   }
 
   &.seasons-greetings {
-    background-color: #64BD71;
+    background: $seasons-greetings-gradient;
 
     .toggle-button-container .choice-toggle {
-    background-color: #64BD71;
-    border-color: #64BD71;
+    background-color: $seasons-greetings-banner;
+    border-color: $seasons-greetings-banner;
     }
 
     .choice-contents {
@@ -201,20 +270,27 @@ body, html, #root, .App, .content-container {
     background-repeat: no-repeat;
     background-position-x: -40%, center;
     background-position-y: -5%, center;
-    width: 650px;
+    transform: translateY(0)
+    //width: 650px;
     }
 
     .choice-container .share-box {
-      background-color: #64BD71;
+      background-color: $seasons-greetings-banner;;
     }
     
     .pattern-container {
     opacity: 1;
     background-image: url(../assets/grid_crosses.svg);
     &:before {
-       @include background-text("SEASONS GREETINGS", #64BD71)
+       @include background-text("SEASONS GREETINGS", $seasons-greetings-banner)
       }
     }
+
+    .choice-toggle.seasons-greetings {
+      opacity: 1;
+    }
+    
+
   }
 
   .intro {
@@ -226,7 +302,7 @@ body, html, #root, .App, .content-container {
 
 
   &.fade-leave {
-  height: 30%;
+  height: 30deg;
   @include transition();
 
 
@@ -253,6 +329,9 @@ body, html, #root, .App, .content-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  @include transition();
+  transition-property: transform;
+  transition-delay: 2s;
 
 
   p {
@@ -335,6 +414,12 @@ body, html, #root, .App, .content-container {
 .hidden {
   opacity: 0;
   z-index: -1;
+  transform: translateY(200%);
+
+  .choice-contents {
+    transform: translateY(200%) !important; //Needed to override the class given by the current choice
+    transition-delay: .5s
+  }
 }
 
  .share-box {
@@ -354,7 +439,7 @@ body, html, #root, .App, .content-container {
       @include transition();
 
       p {
-        color: $colour-background-home;
+        color: $home-background;
         font-size: 16px;
       }
 
@@ -366,12 +451,17 @@ body, html, #root, .App, .content-container {
 
 
       .icon-container {
-        color: $colour-background-home;
+        color: $home-background;
         position: absolute;
         bottom: 30px;
         width: 100%;
         svg {
           font-size: 40px;
+          cursor: pointer;
+
+          &:hover, &:focus {
+            animation: wiggle .3s infinite;
+          }
         }
       }
     }
@@ -382,6 +472,7 @@ body, html, #root, .App, .content-container {
   display: flex;
   margin: 0 auto;
   top: 0;
+  left: 0;
   //justify-content: space-around;
   position: absolute;
   @include transition();
@@ -396,8 +487,8 @@ body, html, #root, .App, .content-container {
     justify-content: space-between;
 
   .choice-toggle {
-    border: 24px solid transparent;
-    color: #171615;
+    border: 16px solid transparent;
+    color: $text-colour;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -405,6 +496,7 @@ body, html, #root, .App, .content-container {
     height: 175px;
     width: 175px;
     @include transition();
+    opacity: .5;
 
     &.gift-responses {
       background-image: url(../assets/cta_diagonals.svg)

@@ -5,11 +5,40 @@
   font-weight: normal;
   font-style: normal; }
 
+/*Adapted from https://codepen.io/GhostRider/pen/FctLB/ */
+@keyframes wiggle {
+  0% {
+    -webkit-transform: translate(2px, 1px) rotate(0deg); }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+  30% {
+    -webkit-transform: translate(0px, 2px) rotate(0deg); }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg); }
+  50% {
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+  70% {
+    -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+  90% {
+    -webkit-transform: translate(2px, 2px) rotate(0deg); }
+  100% {
+    -webkit-transform: translate(1px, -2px) rotate(-1deg); } }
+
 body, html, #root, .App, .content-container {
   position: relative;
   height: 100%;
   text-align: center;
   font-family: "Charter", Georgia, 'Times New Roman', Times, serif; }
+
+.shake:hover, .shake:focus {
+  animation: wiggle .2s infinite;
+  opacity: 1; }
 
 .pattern-container {
   margin-top: 100px;
@@ -36,12 +65,14 @@ body, html, #root, .App, .content-container {
     transition: all 2s ease-in-out;
     opacity: 0; }
   .content-container.none {
-    background-color: #F4F4F4; }
+    background-color: #F6F6F6; }
     .content-container.none .intro {
       transform: translateY(0);
       transition: all 2s ease-in-out; }
     .content-container.none .toggle-container {
-      transform: translateY(175%); }
+      transform: translateY(100%); }
+      .content-container.none .toggle-container .choice-toggle {
+        opacity: 1; }
     .content-container.none > .share-container {
       transform: none;
       bottom: 20px;
@@ -63,26 +94,27 @@ body, html, #root, .App, .content-container {
         height: 120px;
         margin: 0 auto; }
         .content-container.none > .share-container .share-box p, .content-container.none > .share-container .share-box .icon-container {
-          color: #171615; }
+          color: #1D1E1B; }
         .content-container.none > .share-container .share-box .icon-container {
           bottom: 0; }
       .content-container.none > .share-container.share-quote {
         top: 0;
         height: 100%; }
   .content-container.gift-responses {
-    background-color: #EE3E4C;
-    border-color: #EE3E4C; }
+    background: linear-gradient(30deg, #F95A5A, #E24A6B);
+    border-color: #E24A6B; }
     .content-container.gift-responses .toggle-button-container .choice-toggle {
-      background-color: #EE3E4C;
-      border-color: #EE3E4C; }
+      background-color: #E24A6B;
+      border-color: #E24A6B; }
     .content-container.gift-responses .choice-contents {
       background-image: url(../assets/ribbon.svg), url(../assets/bubble_desktop.svg);
       background-size: 50% 75%, 550px 310px;
       background-repeat: no-repeat;
       background-position-x: -20%, center;
-      background-position-y: -2%, center; }
+      background-position-y: -2%, center;
+      transform: translateY(0); }
     .content-container.gift-responses .choice-container .share-box {
-      background-color: #EE3E4C; }
+      background-color: #E24A6B; }
     .content-container.gift-responses .pattern-container {
       opacity: 1;
       background-image: url(../assets/grid_diagonals.svg); }
@@ -91,23 +123,35 @@ body, html, #root, .App, .content-container {
         position: absolute;
         z-index: 0;
         left: 0;
+        opacity: .75;
         top: 20%;
-        font-size: 300px;
+        font-size: 200px;
         font-weight: bold;
-        color: #EE3E4C;
+        color: #E24A6B;
         text-align: left;
-        transition: all 2s ease-in-out; }
+        font-family: "DK Saffron Walden", sans-serif;
+        transition: all 2s ease-in-out;
+        /*transition-delay: 2.5s;*/ }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+    .content-container.gift-responses .choice-toggle.gift-responses {
+      opacity: 1; }
   .content-container.invitation-excuses {
-    background-color: #665EC1; }
+    background: linear-gradient(30deg, #7583CC, #7C6ACC); }
     .content-container.invitation-excuses .toggle-button-container .choice-toggle {
-      background-color: #665EC1;
-      border-color: #665EC1; }
+      background-color: #7583CC;
+      border-color: #7583CC; }
     .content-container.invitation-excuses .choice-contents {
       background-image: url(../assets/reindeer.svg), url(../assets/bubble_desktop.svg);
       background-size: 50% 50%, 550px 310px;
       background-repeat: no-repeat;
       background-position-x: -20%, center;
-      background-position-y: -21%, center; }
+      background-position-y: -21%, center;
+      transform: translateY(0); }
     .content-container.invitation-excuses .pattern-container {
       opacity: 1;
       background-image: url(../assets/grid_zigzag.svg); }
@@ -116,28 +160,39 @@ body, html, #root, .App, .content-container {
         position: absolute;
         z-index: 0;
         left: 0;
+        opacity: .75;
         top: 20%;
-        font-size: 300px;
+        font-size: 200px;
         font-weight: bold;
-        color: #665EC1;
+        color: #7583CC;
         text-align: left;
-        transition: all 2s ease-in-out; }
+        font-family: "DK Saffron Walden", sans-serif;
+        transition: all 2s ease-in-out;
+        /*transition-delay: 2.5s;*/ }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
     .content-container.invitation-excuses .choice-container .share-box {
-      background-color: #665EC1; }
+      background-color: #7583CC; }
+    .content-container.invitation-excuses .choice-toggle.invitation-excuses {
+      opacity: 1; }
   .content-container.seasons-greetings {
-    background-color: #64BD71; }
+    background: linear-gradient(30deg, #88C685, #51BD6C); }
     .content-container.seasons-greetings .toggle-button-container .choice-toggle {
-      background-color: #64BD71;
-      border-color: #64BD71; }
+      background-color: #88C685;
+      border-color: #88C685; }
     .content-container.seasons-greetings .choice-contents {
       background-image: url(../assets/holly.svg), url(../assets/bubble_desktop.svg);
       background-size: 55% 60%, 550px 310px;
       background-repeat: no-repeat;
       background-position-x: -40%, center;
       background-position-y: -5%, center;
-      width: 650px; }
+      transform: translateY(0); }
     .content-container.seasons-greetings .choice-container .share-box {
-      background-color: #64BD71; }
+      background-color: #88C685; }
     .content-container.seasons-greetings .pattern-container {
       opacity: 1;
       background-image: url(../assets/grid_crosses.svg); }
@@ -146,19 +201,30 @@ body, html, #root, .App, .content-container {
         position: absolute;
         z-index: 0;
         left: 0;
+        opacity: .75;
         top: 20%;
-        font-size: 300px;
+        font-size: 200px;
         font-weight: bold;
-        color: #64BD71;
+        color: #88C685;
         text-align: left;
-        transition: all 2s ease-in-out; }
+        font-family: "DK Saffron Walden", sans-serif;
+        transition: all 2s ease-in-out;
+        /*transition-delay: 2.5s;*/ }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+    .content-container.seasons-greetings .choice-toggle.seasons-greetings {
+      opacity: 1; }
   .content-container .intro {
     transform: translateY(-200%);
     margin: 0 auto;
     width: 40%;
     transition: all 2s ease-in-out; }
     .content-container .intro.fade-leave {
-      height: 30%;
+      height: 30deg;
       transition: all 2s ease-in-out; }
       .content-container .intro.fade-leave.fade-leave-active {
         height: 0; }
@@ -176,7 +242,10 @@ body, html, #root, .App, .content-container {
   font-size: 24px;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  transition: all 2s ease-in-out;
+  transition-property: transform;
+  transition-delay: 2s; }
   .choice-contents p {
     margin-top: -20px;
     width: 60%;
@@ -231,7 +300,11 @@ body, html, #root, .App, .content-container {
 
 .hidden {
   opacity: 0;
-  z-index: -1; }
+  z-index: -1;
+  transform: translateY(200%); }
+  .hidden .choice-contents {
+    transform: translateY(200%) !important;
+    transition-delay: .5s; }
 
 .share-box {
   display: flex;
@@ -246,19 +319,22 @@ body, html, #root, .App, .content-container {
   margin: 0 auto;
   transition: all 2s ease-in-out; }
   .share-box p {
-    color: #F4F4F4;
+    color: #F6F6F6;
     font-size: 16px; }
   .share-box .top-text {
     position: absolute;
     width: 100%;
     top: 0; }
   .share-box .icon-container {
-    color: #F4F4F4;
+    color: #F6F6F6;
     position: absolute;
     bottom: 30px;
     width: 100%; }
     .share-box .icon-container svg {
-      font-size: 40px; }
+      font-size: 40px;
+      cursor: pointer; }
+      .share-box .icon-container svg:hover, .share-box .icon-container svg:focus {
+        animation: wiggle .3s infinite; }
 
 .toggle-container {
   transform: translateY(0);
@@ -266,6 +342,7 @@ body, html, #root, .App, .content-container {
   display: flex;
   margin: 0 auto;
   top: 0;
+  left: 0;
   position: absolute;
   transition: all 2s ease-in-out;
   width: 100%;
@@ -277,15 +354,16 @@ body, html, #root, .App, .content-container {
     display: flex;
     justify-content: space-between; }
     .toggle-container .toggle-button-container .choice-toggle {
-      border: 24px solid transparent;
-      color: #171615;
+      border: 16px solid transparent;
+      color: #1D1E1B;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 175px;
       width: 175px;
-      transition: all 2s ease-in-out; }
+      transition: all 2s ease-in-out;
+      opacity: .5; }
       .toggle-container .toggle-button-container .choice-toggle.gift-responses {
         background-image: url(../assets/cta_diagonals.svg); }
       .toggle-container .toggle-button-container .choice-toggle.seasons-greetings {

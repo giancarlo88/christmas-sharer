@@ -13,10 +13,14 @@ constructor(props){
   }
 }
  callAPI(){
- $.ajax({
-    url: "http://numbersapi.com/random",
+  $.ajax({
+    url: 'data/seasonsGreetings.json',
+    method: "GET",
+    dataType: "json",
     success: function(data) {
-      this.setState({data: data})
+      console.log(data)
+      let quote = data.quotes[ Math.floor(Math.random()*data.quotes.length)]
+      this.setState({data: quote})
     }.bind(this)
   })
  }

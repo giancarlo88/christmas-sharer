@@ -2,14 +2,20 @@ import $ from 'jquery'
 import React, { Component } from 'react';
 import ChoiceContents from "./ChoiceContents";
 import Share from "./Share"
+//import './giftResponses.json'
+
 
 class GiftResponses extends Component  {
 
 callAPI(){
    $.ajax({
-    url: "https://api.icndb.com/jokes/random",
+    url: 'data/giftResponses.json',
+    method: "GET",
+    dataType: "json",
     success: function(data) {
-      this.setState({data: data.value.joke})
+      console.log(data)
+      let quote = data.quotes[ Math.floor(Math.random()*data.quotes.length)]
+      this.setState({data: quote})
     }.bind(this)
   })
 }
