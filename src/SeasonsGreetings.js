@@ -36,7 +36,8 @@ componentDidMount(){
     let classNames = `choice-container ${this.state.active ? "" : 'hidden'}`
     return (
       <div className={classNames}>
-       <ChoiceContents data={this.state.data}/>
+      <div className="pattern-container seasons-greetings"/>
+       <ChoiceContents active="seasons-greetings" data={this.state.data}/>
         <Share quote={this.state.data} active={this.state.active}/>
       </div>
     )

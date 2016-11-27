@@ -54,7 +54,6 @@ class ContentContainer extends Component {
     return (
       <div 
         className={cssClasses}>
-          <div className="pattern-container"/>
           <Intro className="intro" key={0}/>
           <DesktopToggles handleChoiceClick={this.handleChoiceClick.bind(this)}/>
           <GiftResponses active={this.state.choice==="gift-responses"} />

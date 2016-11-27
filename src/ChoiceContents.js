@@ -4,9 +4,10 @@ import React, { Component } from "react";
 class ChoiceContents extends Component {
   
   render() {
+    let classNames = `choice-contents ${this.props.active}`
     return (
-  
-      <div className="choice-contents">
+
+      <div className={classNames}>
         <p>{this.props.data}</p>
       </div>
     )

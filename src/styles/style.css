@@ -49,8 +49,9 @@ body, html, #root, .App, .content-container {
   position: absolute;
   left: 0;
   background-size: 100px;
-  opacity: 0;
-  transition: all 2s ease-in-out; }
+  transform: translateY(100%);
+  transition: all 2s ease-in-out;
+  transition-delay: .5s; }
 
 .content-container {
   padding: 0 10px;
@@ -96,6 +97,8 @@ body, html, #root, .App, .content-container {
     opacity: 0; }
   .content-container.seasons-greetings a, .content-container.seasons-greetings a:visited, .content-container.invitation-excuses a, .content-container.invitation-excuses a:visited, .content-container.gift-responses a, .content-container.gift-responses a:visited {
     color: #F6F6F6; }
+  .content-container.seasons-greetings .pattern-container, .content-container.invitation-excuses .pattern-container, .content-container.gift-responses .pattern-container {
+    transform: translateY(0); }
   .content-container.none {
     background-color: #F6F6F6; }
     .content-container.none .intro {
@@ -111,38 +114,8 @@ body, html, #root, .App, .content-container {
     .content-container.gift-responses .toggle-button-container .choice-toggle {
       background-color: #E24A6B;
       border-color: #E24A6B; }
-    .content-container.gift-responses .choice-contents {
-      background-image: url(../assets/ribbon.svg), url(../assets/bubble_desktop.svg);
-      background-size: 50% 75%, 550px 310px;
-      background-repeat: no-repeat;
-      background-position-x: -20%, center;
-      background-position-y: -2%, center;
-      transform: translateY(0); }
     .content-container.gift-responses .choice-container .share-box {
       background-color: #E24A6B; }
-    .content-container.gift-responses .pattern-container {
-      opacity: 1;
-      background-image: url(../assets/grid_diagonals.svg); }
-      .content-container.gift-responses .pattern-container:before {
-        content: "GIFT RESPONSES";
-        position: absolute;
-        z-index: 0;
-        left: 0;
-        opacity: .75;
-        top: 20%;
-        font-size: 200px;
-        font-weight: bold;
-        color: #E24A6B;
-        text-align: left;
-        font-family: "DK Saffron Walden", sans-serif;
-        transition: all 2s ease-in-out;
-        /*transition-delay: 2.5s;*/ }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
     .content-container.gift-responses .choice-toggle.gift-responses {
       opacity: 1; }
   .content-container.invitation-excuses {
@@ -150,36 +123,6 @@ body, html, #root, .App, .content-container {
     .content-container.invitation-excuses .toggle-button-container .choice-toggle {
       background-color: #7583CC;
       border-color: #7583CC; }
-    .content-container.invitation-excuses .choice-contents {
-      background-image: url(../assets/reindeer.svg), url(../assets/bubble_desktop.svg);
-      background-size: 50% 50%, 550px 310px;
-      background-repeat: no-repeat;
-      background-position-x: -20%, center;
-      background-position-y: -21%, center;
-      transform: translateY(0); }
-    .content-container.invitation-excuses .pattern-container {
-      opacity: 1;
-      background-image: url(../assets/grid_zigzag.svg); }
-      .content-container.invitation-excuses .pattern-container:before {
-        content: "INVITATION EXCUSES";
-        position: absolute;
-        z-index: 0;
-        left: 0;
-        opacity: .75;
-        top: 20%;
-        font-size: 200px;
-        font-weight: bold;
-        color: #7583CC;
-        text-align: left;
-        font-family: "DK Saffron Walden", sans-serif;
-        transition: all 2s ease-in-out;
-        /*transition-delay: 2.5s;*/ }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
     .content-container.invitation-excuses .choice-container .share-box {
       background-color: #7583CC; }
     .content-container.invitation-excuses .choice-toggle.invitation-excuses {
@@ -189,40 +132,97 @@ body, html, #root, .App, .content-container {
     .content-container.seasons-greetings .toggle-button-container .choice-toggle {
       background-color: #88C685;
       border-color: #88C685; }
-    .content-container.seasons-greetings .choice-contents {
-      background-image: url(../assets/holly.svg), url(../assets/bubble_desktop.svg);
-      background-size: 55% 60%, 550px 310px;
-      background-repeat: no-repeat;
-      background-position-x: -40%, center;
-      background-position-y: -5%, center;
-      transform: translateY(0); }
     .content-container.seasons-greetings .choice-container .share-box {
       background-color: #88C685; }
-    .content-container.seasons-greetings .pattern-container {
-      opacity: 1;
-      background-image: url(../assets/grid_crosses.svg); }
-      .content-container.seasons-greetings .pattern-container:before {
-        content: "SEASONS GREETINGS";
-        position: absolute;
-        z-index: 0;
-        left: 0;
-        opacity: .75;
-        top: 20%;
-        font-size: 200px;
-        font-weight: bold;
-        color: #88C685;
-        text-align: left;
-        font-family: "DK Saffron Walden", sans-serif;
-        transition: all 2s ease-in-out;
-        /*transition-delay: 2.5s;*/ }
+    .content-container.seasons-greetings .choice-toggle.seasons-greetings {
+      opacity: 1; }
+  .content-container .choice-contents.gift-responses {
+    background-image: url(../assets/ribbon.svg), url(../assets/bubble_desktop.svg);
+    background-size: 50% 75%, 550px 310px;
+    background-repeat: no-repeat;
+    background-position-x: -20%, center;
+    background-position-y: -2%, center;
+    transform: translateY(0); }
+  .content-container .choice-contents.invitation-excuses {
+    background-image: url(../assets/reindeer.svg), url(../assets/bubble_desktop.svg);
+    background-size: 50% 50%, 550px 310px;
+    background-repeat: no-repeat;
+    background-position-x: -20%, center;
+    background-position-y: -21%, center;
+    transform: translateY(0); }
+  .content-container .choice-contents.seasons-greetings {
+    background-image: url(../assets/holly.svg), url(../assets/bubble_desktop.svg);
+    background-size: 55% 60%, 550px 310px;
+    background-repeat: no-repeat;
+    background-position-x: -40%, center;
+    background-position-y: -5%, center;
+    transform: translateY(0); }
+  .content-container .pattern-container.seasons-greetings {
+    opacity: 1;
+    background-image: url(../assets/grid_crosses.svg); }
+    .content-container .pattern-container.seasons-greetings:before {
+      content: "SEASONS GREETINGS";
+      position: absolute;
+      z-index: 0;
+      left: 0;
+      opacity: .75;
+      top: 20%;
+      font-size: 200px;
+      font-weight: bold;
+      color: #88C685;
+      text-align: left;
+      font-family: "DK Saffron Walden", sans-serif;
+      transition: all 2s ease-in-out; }
 
 @keyframes fadeIn {
   from {
     opacity: 0; }
   to {
     opacity: 1; } }
-    .content-container.seasons-greetings .choice-toggle.seasons-greetings {
-      opacity: 1; }
+  .content-container .pattern-container.gift-responses {
+    opacity: 1;
+    background-image: url(../assets/grid_diagonals.svg); }
+    .content-container .pattern-container.gift-responses:before {
+      content: "GIFT RESPONSES";
+      position: absolute;
+      z-index: 0;
+      left: 0;
+      opacity: .75;
+      top: 20%;
+      font-size: 200px;
+      font-weight: bold;
+      color: #E24A6B;
+      text-align: left;
+      font-family: "DK Saffron Walden", sans-serif;
+      transition: all 2s ease-in-out; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+  .content-container .pattern-container.invitation-excuses {
+    opacity: 1;
+    background-image: url(../assets/grid_zigzag.svg); }
+    .content-container .pattern-container.invitation-excuses:before {
+      content: "INVITATION EXCUSES";
+      position: absolute;
+      z-index: 0;
+      left: 0;
+      opacity: .75;
+      top: 20%;
+      font-size: 200px;
+      font-weight: bold;
+      color: #7583CC;
+      text-align: left;
+      font-family: "DK Saffron Walden", sans-serif;
+      transition: all 2s ease-in-out; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
   .content-container .intro {
     transform: translateY(-200%);
     margin: 0 auto;
@@ -250,7 +250,7 @@ body, html, #root, .App, .content-container {
   justify-content: center;
   transition: all 2s ease-in-out;
   transition-property: transform;
-  transition-delay: 2s; }
+  transition-delay: .5s; }
   .choice-contents p {
     margin-top: -20px;
     width: 60%;
@@ -305,7 +305,6 @@ body, html, #root, .App, .content-container {
 
 .hidden {
   opacity: 0;
-  z-index: -1;
   transform: translateY(200%); }
   .hidden .choice-contents {
     transform: translateY(200%) !important;

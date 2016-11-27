@@ -37,7 +37,8 @@ render() {
   let classNames = `choice-container ${this.state.active ? "" : 'hidden'}`
   return (
   <div className={classNames}>
-    <ChoiceContents data={this.state.data} />
+    <div className="pattern-container invitation-excuses"/>
+    <ChoiceContents active="invitation-excuses" data={this.state.data} />
       <Share quote={this.state.data} active={this.state.active}/>
   </div>
   )
