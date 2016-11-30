@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 import Intro from "./Intro"
 import DesktopToggles from "./DesktopToggles"
-//import MobileSlider from "./MobileSlider"
+import MobileSlider from "./MobileSlider"
 import GiftResponses from "./GiftResponses";
 import InvitationExcuses from "./InvitationExcuses";
 import SeasonsGreetings from "./SeasonsGreetings";
@@ -55,7 +55,8 @@ class ContentContainer extends Component {
       <div 
         className={cssClasses}>
           <Intro className="intro" key={0}/>
-          <DesktopToggles handleChoiceClick={this.handleChoiceClick.bind(this)}/>
+          {screen.width > 768 && <DesktopToggles handleChoiceClick={this.handleChoiceClick.bind(this)}/> }
+          {screen.width <= 768 && <MobileSlider handleChoiceClick={this.handleChoiceClick.bind(this)} /> }
           <GiftResponses active={this.state.choice==="gift-responses"} />
           <InvitationExcuses active={this.state.choice==="invitation-excuses"} />
           <SeasonsGreetings active={this.state.choice==="seasons-greetings" } />

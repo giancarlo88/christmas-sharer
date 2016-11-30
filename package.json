@@ -11,6 +11,8 @@
   "dependencies": {
     "node-sass": "^3.13.0",
     "react": "^15.3.2",
+    "react-addons-css-transition-group": "^15.4.1",
+    "react-css-transition-replace": "^2.0.1",
     "react-dom": "^15.3.2",
     "react-icons": "^2.2.1",
     "sass-loader": "^4.0.2"

@@ -16,6 +16,7 @@ $pattern-colour: rgba(255, 255, 255, .33);
 
 $home-background: #F6F6F6;
 $text-colour: #1D1E1B;
+$text-inactive: grey;
 $bubble-colour: #FFF;
 $banner-shadow: box-shadow(15px 15px 15px 15px $shadow);
 
@@ -38,36 +39,36 @@ $invitation-excuses-toggle-button-faded: #4A4A77;
 /*Adapted from https://codepen.io/GhostRider/pen/FctLB/ */
 
 @keyframes wiggle {
-	0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
-	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
-	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
-	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
-	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
-	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
-	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
-	70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
-	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
-	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
-	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+	0% {  transform: translate(1px, 1px) rotate(0deg); }
+	10% { transform: translate(-1px, -1px) rotate(-1deg); }
+	20% { transform: translate(-1px, 0px) rotate(1deg); }
+	30% { transform: translate(0px, 1px) rotate(0deg); }
+	40% { transform: translate(1px, -1px) rotate(1deg); }
+	50% { transform: translate(-1px, 1px) rotate(-1deg); }
+	60% { transform: translate(-1px, 1px) rotate(0deg); }
+	70% { transform: translate(1px, 1px) rotate(-1deg); }
+	80% { transform: translate(-1px, -1px) rotate(1deg); }
+	90% { transform: translate(1px, 1px) rotate(0deg); }
+	100% { transform: translate(1px, -1px) rotate(-1deg); }
 }
 
 @mixin transition() {
   transition: all 2s ease-in-out;
 }
 
-@mixin background-text($text, $colour) {
+@mixin background-text($text) {
   content: $text;
   position: absolute;
   z-index: 0;
   left: 0;
-  opacity: .75;
-  top: 20%;
   font-size: 200px;
   font-weight: bold;
-  color: $colour;
+  color: rgba(0, 0, 0, .05);
   text-align: left;
   font-family: "DK Saffron Walden", sans-serif;  
   @include transition();
+  transition-delay: 1.5s;
+}
 
 @keyframes fadeIn {
   from {
@@ -76,7 +77,6 @@ $invitation-excuses-toggle-button-faded: #4A4A77;
   to {
     opacity: 1
   }
-}
 }
 
 
@@ -91,20 +91,25 @@ body, html, #root, .App, .content-container {
 
 
 .shake:hover, .shake:focus {
-  animation: wiggle .2s infinite;
+  animation: wiggle .5s infinite;
   opacity: 1;
 }
 
 .pattern-container {
-    margin-top: 100px;
-    height: 100%;
+    margin-top: 5vh;
+    height: 100vh;
     width: 100%;
     position: absolute;
     left: 0;
     background-size: 100px; 
     transform: translateY(100%);
     @include transition();
-    transition-delay: .5s
+    transition-delay: .5s;
+
+    &:before {
+      max-width: 50%;
+      bottom: 0;
+    }
 }
 
 .content-container {
@@ -122,7 +127,7 @@ body, html, #root, .App, .content-container {
     font-size: 14px;
   }
 
-   &>.share-container,  { //State when homepage is loaded
+   &>.share-container.homepage,  { //State when homepage is loaded
     transform: none;
     bottom: 20px;
     left:0;
@@ -180,7 +185,11 @@ body, html, #root, .App, .content-container {
       }
 
       .pattern-container {
-        transform: translateY(0)
+        transform: translateY(0);
+          &:before {
+            opacity: 1
+          }
+        
       }
   }
 
@@ -192,9 +201,10 @@ body, html, #root, .App, .content-container {
           @include transition();
         }
     .toggle-container  {
-          transform: translateY(100%);
+          transform: translateY(30vh);
         .choice-toggle {
           opacity: 1;
+          color: $text-colour;
       }
     }
   } 
@@ -202,50 +212,68 @@ body, html, #root, .App, .content-container {
   &.gift-responses {
     background: $gift-responses-gradient;
     border-color: $gift-responses-banner;
-    .toggle-button-container .choice-toggle {
+    .toggle-button-container {
+      .choice-toggle, .choice-toggle:after {
       background-color: $gift-responses-banner;
       border-color: $gift-responses-banner;
+      }
     }
     .choice-container .share-box {
       background-color: $gift-responses-banner;
     }
     .choice-toggle.gift-responses {
-      opacity: 1;
-    }
+      color: $text-colour;
+
+      &:after {
+        background-color: transparent;
+      }
+      }
   }
   
   &.invitation-excuses {
     background: $invitation-excuses-gradient;
-    .toggle-button-container .choice-toggle {
+    .toggle-button-container {
+       .choice-toggle, .choice-toggle:after {
       background-color: $invitation-excuses-banner;
       border-color: $invitation-excuses-banner;
-      ;
+      }
     }
     .choice-container .share-box {
       background-color: $invitation-excuses-banner;
       ;
     }
     .choice-toggle.invitation-excuses {
-      opacity: 1;
+      color: $text-colour;
+      
+       &:after {
+        background-color: transparent;
+      }
     }
   }
   
   &.seasons-greetings {
     background: $seasons-greetings-gradient;
-    .toggle-button-container .choice-toggle {
+    .toggle-button-container {
+      .choice-toggle, .choice-toggle:after {
       background-color: $seasons-greetings-banner;
       border-color: $seasons-greetings-banner;
+      }
     }
     .choice-container .share-box {
       background-color: $seasons-greetings-banner;
       ;
     }
     .choice-toggle.seasons-greetings {
-      opacity: 1;
+      color: $text-colour;
+       &:after {
+        background-color: transparent;
+      }
     }
   }
 
  .choice-contents{
+   cursor: pointer;
+
    &.gift-responses {
     background-image: url(../assets/ribbon.svg), url(../assets/bubble_desktop.svg);
     background-size: 50% 75%, 550px 310px;
@@ -280,7 +308,7 @@ body, html, #root, .App, .content-container {
     opacity: 1;
     background-image: url(../assets/grid_crosses.svg);
     &:before {
-       @include background-text("SEASONS GREETINGS", $seasons-greetings-banner)
+      @include background-text("SEASONS GREETINGS")
       }
     }
 
@@ -288,7 +316,7 @@ body, html, #root, .App, .content-container {
     opacity: 1;
     background-image: url(../assets/grid_diagonals.svg);
      &:before {
-      @include background-text("GIFT RESPONSES", $gift-responses-banner)
+      @include background-text("GIFT RESPONSES")
     }
 
   }
@@ -297,7 +325,7 @@ body, html, #root, .App, .content-container {
       background-image: url(../assets/grid_zigzag.svg);
 
     &:before {
-      @include background-text("INVITATION EXCUSES", $invitation-excuses-banner)
+      @include background-text("INVITATION EXCUSES")
     }
  }
   }
@@ -353,8 +381,9 @@ body, html, #root, .App, .content-container {
 
 
   p {
-    margin-top: -20px;
-    width: 60%;
+    margin: 0 auto;
+    margin-top: -30px;
+    width: 375px;
     font-size: 24px;
   }
 
@@ -441,6 +470,10 @@ body, html, #root, .App, .content-container {
   .share-box {
     opacity: 0;
   }
+
+  .pattern-container:before {
+    opacity: 0 !important; //Need to refactor
+  }
 }
 
  .share-box {
@@ -499,6 +532,7 @@ body, html, #root, .App, .content-container {
   @include transition();
   width: 100%;
   height:auto;
+  z-index: 4;
 
   .toggle-button-container {
     width: 100%;
@@ -508,7 +542,7 @@ body, html, #root, .App, .content-container {
     justify-content: space-between;
 
   .choice-toggle {
-    border: 16px solid transparent;
+    border: 17px solid $home-background;
     color: $text-colour;
     cursor: pointer;
     display: flex;
@@ -516,8 +550,8 @@ body, html, #root, .App, .content-container {
     justify-content: center;
     height: 175px;
     width: 175px;
+    position: relative;
     @include transition();
-    opacity: .5;
 
     &.gift-responses {
       background-image: url(../assets/cta_diagonals.svg)
@@ -531,7 +565,41 @@ body, html, #root, .App, .content-container {
       background-image: url(../assets/cta_zigzag.svg);
     }
 
+    &:after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    height: 175px;
+    width: 175px;
+    background-color: transparent;
+    filter: opacity(50%);
+    @include transition();
+    }
+
   }
   }
 }
 
+
+
+.fade-enter {
+  transform: translateY(-100%)
+}
+
+.fade-enter.fade-enter-active {
+  transform: translateY(0);
+  @include transition();
+  transition-duration: .2s;
+}
+
+.fade-leave {
+  transform: translateY(0);
+}
+
+.fade-leave.fade-leave-active {
+  transform: translateY(100%);
+  @include transition();
+  transition-duration: 2s;
+}

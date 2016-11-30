@@ -32,7 +32,6 @@ componentWillReceiveProps(props){
     quote: props.quote
   })
 }
-
 componentDidMount(){
   this.callAPI();
  }
@@ -42,7 +41,7 @@ render() {
     
   <div className={classNames}>
   <div className="pattern-container gift-responses"/>
-    <ChoiceContents active="gift-responses" data={this.state.data}/>
+    <ChoiceContents callAPI={this.callAPI.bind(this)} active="gift-responses" data={this.state.data}/>
     <Share quote={this.state.data} active={this.state.active}/>
   </div>
   )

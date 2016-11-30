@@ -10,27 +10,33 @@
 /*Adapted from https://codepen.io/GhostRider/pen/FctLB/ */
 @keyframes wiggle {
   0% {
-    -webkit-transform: translate(2px, 1px) rotate(0deg); }
+    transform: translate(1px, 1px) rotate(0deg); }
   10% {
-    -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+    transform: translate(-1px, -1px) rotate(-1deg); }
   20% {
-    -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+    transform: translate(-1px, 0px) rotate(1deg); }
   30% {
-    -webkit-transform: translate(0px, 2px) rotate(0deg); }
+    transform: translate(0px, 1px) rotate(0deg); }
   40% {
-    -webkit-transform: translate(1px, -1px) rotate(1deg); }
+    transform: translate(1px, -1px) rotate(1deg); }
   50% {
-    -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+    transform: translate(-1px, 1px) rotate(-1deg); }
   60% {
-    -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+    transform: translate(-1px, 1px) rotate(0deg); }
   70% {
-    -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+    transform: translate(1px, 1px) rotate(-1deg); }
   80% {
-    -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+    transform: translate(-1px, -1px) rotate(1deg); }
   90% {
-    -webkit-transform: translate(2px, 2px) rotate(0deg); }
+    transform: translate(1px, 1px) rotate(0deg); }
   100% {
-    -webkit-transform: translate(1px, -2px) rotate(-1deg); } }
+    transform: translate(1px, -1px) rotate(-1deg); } }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 
 body, html, #root, .App, .content-container {
   position: relative;
@@ -39,12 +45,12 @@ body, html, #root, .App, .content-container {
   font-family: "Charter", Georgia, 'Times New Roman', Times, serif; }
 
 .shake:hover, .shake:focus {
-  animation: wiggle .2s infinite;
+  animation: wiggle .5s infinite;
   opacity: 1; }
 
 .pattern-container {
-  margin-top: 100px;
-  height: 100%;
+  margin-top: 5vh;
+  height: 100vh;
   width: 100%;
   position: absolute;
   left: 0;
@@ -52,6 +58,9 @@ body, html, #root, .App, .content-container {
   transform: translateY(100%);
   transition: all 2s ease-in-out;
   transition-delay: .5s; }
+  .pattern-container:before {
+    max-width: 50%;
+    bottom: 0; }
 
 .content-container {
   padding: 0 10px;
@@ -63,7 +72,7 @@ body, html, #root, .App, .content-container {
     text-transform: uppercase; }
   .content-container p {
     font-size: 14px; }
-  .content-container > .share-container {
+  .content-container > .share-container.homepage {
     transform: none;
     bottom: 20px;
     left: 0;
@@ -71,12 +80,12 @@ body, html, #root, .App, .content-container {
     width: 100%;
     height: 121px;
     opacity: 1; }
-    .content-container > .share-container a, .content-container > .share-container a:visited {
+    .content-container > .share-container.homepage a, .content-container > .share-container.homepage a:visited {
       color: #1D1E1B; }
     @media (max-width: 768px) {
-      .content-container > .share-container {
+      .content-container > .share-container.homepage {
         bottom: 5%; } }
-    .content-container > .share-container .share-box {
+    .content-container > .share-container.homepage .share-box {
       /*background-color: #FFF;*/
       background-image: url(../assets/share_tag.svg);
       mask-image: none;
@@ -85,11 +94,11 @@ body, html, #root, .App, .content-container {
       width: 300px;
       height: 120px;
       margin: 0 auto; }
-      .content-container > .share-container .share-box p, .content-container > .share-container .share-box .icon-container {
+      .content-container > .share-container.homepage .share-box p, .content-container > .share-container.homepage .share-box .icon-container {
         color: #1D1E1B; }
-      .content-container > .share-container .share-box .icon-container {
+      .content-container > .share-container.homepage .share-box .icon-container {
         bottom: 0; }
-        .content-container > .share-container .share-box .icon-container p {
+        .content-container > .share-container.homepage .share-box .icon-container p {
           display: none; }
   .content-container.seasons-greetings .share-container.homepage, .content-container.invitation-excuses .share-container.homepage, .content-container.gift-responses .share-container.homepage {
     transition: all 2s ease-in-out;
@@ -99,64 +108,75 @@ body, html, #root, .App, .content-container {
     color: #F6F6F6; }
   .content-container.seasons-greetings .pattern-container, .content-container.invitation-excuses .pattern-container, .content-container.gift-responses .pattern-container {
     transform: translateY(0); }
+    .content-container.seasons-greetings .pattern-container:before, .content-container.invitation-excuses .pattern-container:before, .content-container.gift-responses .pattern-container:before {
+      opacity: 1; }
   .content-container.none {
     background-color: #F6F6F6; }
     .content-container.none .intro {
       transform: translateY(0);
       transition: all 2s ease-in-out; }
     .content-container.none .toggle-container {
-      transform: translateY(100%); }
+      transform: translateY(30vh); }
       .content-container.none .toggle-container .choice-toggle {
-        opacity: 1; }
+        opacity: 1;
+        color: #1D1E1B; }
   .content-container.gift-responses {
     background: #E24A6B;
     border-color: #E24A6B; }
-    .content-container.gift-responses .toggle-button-container .choice-toggle {
+    .content-container.gift-responses .toggle-button-container .choice-toggle, .content-container.gift-responses .toggle-button-container .choice-toggle:after {
       background-color: #E24A6B;
       border-color: #E24A6B; }
     .content-container.gift-responses .choice-container .share-box {
       background-color: #E24A6B; }
     .content-container.gift-responses .choice-toggle.gift-responses {
-      opacity: 1; }
+      color: #1D1E1B; }
+      .content-container.gift-responses .choice-toggle.gift-responses:after {
+        background-color: transparent; }
   .content-container.invitation-excuses {
     background: #7583CC; }
-    .content-container.invitation-excuses .toggle-button-container .choice-toggle {
+    .content-container.invitation-excuses .toggle-button-container .choice-toggle, .content-container.invitation-excuses .toggle-button-container .choice-toggle:after {
       background-color: #7583CC;
       border-color: #7583CC; }
     .content-container.invitation-excuses .choice-container .share-box {
       background-color: #7583CC; }
     .content-container.invitation-excuses .choice-toggle.invitation-excuses {
-      opacity: 1; }
+      color: #1D1E1B; }
+      .content-container.invitation-excuses .choice-toggle.invitation-excuses:after {
+        background-color: transparent; }
   .content-container.seasons-greetings {
     background: #88C685; }
-    .content-container.seasons-greetings .toggle-button-container .choice-toggle {
+    .content-container.seasons-greetings .toggle-button-container .choice-toggle, .content-container.seasons-greetings .toggle-button-container .choice-toggle:after {
       background-color: #88C685;
       border-color: #88C685; }
     .content-container.seasons-greetings .choice-container .share-box {
       background-color: #88C685; }
     .content-container.seasons-greetings .choice-toggle.seasons-greetings {
-      opacity: 1; }
-  .content-container .choice-contents.gift-responses {
-    background-image: url(../assets/ribbon.svg), url(../assets/bubble_desktop.svg);
-    background-size: 50% 75%, 550px 310px;
-    background-repeat: no-repeat;
-    background-position-x: -20%, center;
-    background-position-y: -2%, center;
-    transform: translateY(0); }
-  .content-container .choice-contents.invitation-excuses {
-    background-image: url(../assets/reindeer.svg), url(../assets/bubble_desktop.svg);
-    background-size: 50% 50%, 550px 310px;
-    background-repeat: no-repeat;
-    background-position-x: -20%, center;
-    background-position-y: -21%, center;
-    transform: translateY(0); }
-  .content-container .choice-contents.seasons-greetings {
-    background-image: url(../assets/holly.svg), url(../assets/bubble_desktop.svg);
-    background-size: 55% 60%, 550px 310px;
-    background-repeat: no-repeat;
-    background-position-x: -40%, center;
-    background-position-y: -5%, center;
-    transform: translateY(0); }
+      color: #1D1E1B; }
+      .content-container.seasons-greetings .choice-toggle.seasons-greetings:after {
+        background-color: transparent; }
+  .content-container .choice-contents {
+    cursor: pointer; }
+    .content-container .choice-contents.gift-responses {
+      background-image: url(../assets/ribbon.svg), url(../assets/bubble_desktop.svg);
+      background-size: 50% 75%, 550px 310px;
+      background-repeat: no-repeat;
+      background-position-x: -20%, center;
+      background-position-y: -2%, center;
+      transform: translateY(0); }
+    .content-container .choice-contents.invitation-excuses {
+      background-image: url(../assets/reindeer.svg), url(../assets/bubble_desktop.svg);
+      background-size: 50% 50%, 550px 310px;
+      background-repeat: no-repeat;
+      background-position-x: -20%, center;
+      background-position-y: -21%, center;
+      transform: translateY(0); }
+    .content-container .choice-contents.seasons-greetings {
+      background-image: url(../assets/holly.svg), url(../assets/bubble_desktop.svg);
+      background-size: 55% 60%, 550px 310px;
+      background-repeat: no-repeat;
+      background-position-x: -40%, center;
+      background-position-y: -5%, center;
+      transform: translateY(0); }
   .content-container .pattern-container.seasons-greetings {
     opacity: 1;
     background-image: url(../assets/grid_crosses.svg); }
@@ -165,20 +185,13 @@ body, html, #root, .App, .content-container {
       position: absolute;
       z-index: 0;
       left: 0;
-      opacity: .75;
-      top: 20%;
       font-size: 200px;
       font-weight: bold;
-      color: #88C685;
+      color: rgba(0, 0, 0, 0.05);
       text-align: left;
       font-family: "DK Saffron Walden", sans-serif;
-      transition: all 2s ease-in-out; }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
+      transition: all 2s ease-in-out;
+      transition-delay: 1.5s; }
   .content-container .pattern-container.gift-responses {
     opacity: 1;
     background-image: url(../assets/grid_diagonals.svg); }
@@ -187,20 +200,13 @@ body, html, #root, .App, .content-container {
       position: absolute;
       z-index: 0;
       left: 0;
-      opacity: .75;
-      top: 20%;
       font-size: 200px;
       font-weight: bold;
-      color: #E24A6B;
+      color: rgba(0, 0, 0, 0.05);
       text-align: left;
       font-family: "DK Saffron Walden", sans-serif;
-      transition: all 2s ease-in-out; }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
+      transition: all 2s ease-in-out;
+      transition-delay: 1.5s; }
   .content-container .pattern-container.invitation-excuses {
     opacity: 1;
     background-image: url(../assets/grid_zigzag.svg); }
@@ -209,20 +215,13 @@ body, html, #root, .App, .content-container {
       position: absolute;
       z-index: 0;
       left: 0;
-      opacity: .75;
-      top: 20%;
       font-size: 200px;
       font-weight: bold;
-      color: #7583CC;
+      color: rgba(0, 0, 0, 0.05);
       text-align: left;
       font-family: "DK Saffron Walden", sans-serif;
-      transition: all 2s ease-in-out; }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
+      transition: all 2s ease-in-out;
+      transition-delay: 1.5s; }
   .content-container .intro {
     transform: translateY(-200%);
     margin: 0 auto;
@@ -252,8 +251,9 @@ body, html, #root, .App, .content-container {
   transition-property: transform;
   transition-delay: .5s; }
   .choice-contents p {
-    margin-top: -20px;
-    width: 60%;
+    margin: 0 auto;
+    margin-top: -30px;
+    width: 375px;
     font-size: 24px; }
 
 .choice-container {
@@ -311,6 +311,8 @@ body, html, #root, .App, .content-container {
     transition-delay: .5s; }
   .hidden .share-box {
     opacity: 0; }
+  .hidden .pattern-container:before {
+    opacity: 0 !important; }
 
 .share-box {
   display: flex;
@@ -352,7 +354,8 @@ body, html, #root, .App, .content-container {
   position: absolute;
   transition: all 2s ease-in-out;
   width: 100%;
-  height: auto; }
+  height: auto;
+  z-index: 4; }
   .toggle-container .toggle-button-container {
     width: 100%;
     margin: 0 auto;
@@ -360,7 +363,7 @@ body, html, #root, .App, .content-container {
     display: flex;
     justify-content: space-between; }
     .toggle-container .toggle-button-container .choice-toggle {
-      border: 16px solid transparent;
+      border: 17px solid #F6F6F6;
       color: #1D1E1B;
       cursor: pointer;
       display: flex;
@@ -368,11 +371,38 @@ body, html, #root, .App, .content-container {
       justify-content: center;
       height: 175px;
       width: 175px;
-      transition: all 2s ease-in-out;
-      opacity: .5; }
+      position: relative;
+      transition: all 2s ease-in-out; }
       .toggle-container .toggle-button-container .choice-toggle.gift-responses {
         background-image: url(../assets/cta_diagonals.svg); }
       .toggle-container .toggle-button-container .choice-toggle.seasons-greetings {
         background-image: url(../assets/cta_crosses.svg); }
       .toggle-container .toggle-button-container .choice-toggle.invitation-excuses {
         background-image: url(../assets/cta_zigzag.svg); }
+      .toggle-container .toggle-button-container .choice-toggle:after {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        top: 0;
+        left: 0;
+        height: 175px;
+        width: 175px;
+        background-color: transparent;
+        filter: opacity(50%);
+        transition: all 2s ease-in-out; }
+
+.fade-enter {
+  transform: translateY(-100%); }
+
+.fade-enter.fade-enter-active {
+  transform: translateY(0);
+  transition: all 2s ease-in-out;
+  transition-duration: .2s; }
+
+.fade-leave {
+  transform: translateY(0); }
+
+.fade-leave.fade-leave-active {
+  transform: translateY(100%);
+  transition: all 2s ease-in-out;
+  transition-duration: 2s; }
