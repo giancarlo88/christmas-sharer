@@ -24,32 +24,6 @@ class ContentContainer extends Component {
     this.setState({ choice })
   }
   render() {
-    // const style = {
-    //   GiftResponses: {
-    //     backgroundColor: "#70257F"
-    //   }, 
-    //   InvitationExcuses: {
-    //     backgroundColor: "#257F6D"
-    //   },
-    //   SeasonsGreetings: {
-    //     backgroundColor: "#7F1413"
-    //   }
-    // }
-    
-      // const classnames = function() {
-      //   switch(this.state.choice){
-      //     case "GiftResponses": 
-      //       return "content-container-GiftResponses";
-      //     case "InvitationExcuses": 
-      //       return "content-container-InvitationExcuses";
-      //     case "SeasonsGreetings": 
-      //       return "content-container-SeasonsGreetings";
-      //      case "none":
-      //      default:
-      //       return "content-container-start";
-      //   }
-      // }
-
     let cssClasses = `content-container ${this.state.choice}`
     return (
       <div 
