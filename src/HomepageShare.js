@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { TiSocialFacebook, TiSocialTwitter, TiSocialPinterest, TiMail } from "react-icons/lib/ti"
+import { TiSocialFacebook, TiSocialTwitter, TiMail } from "react-icons/lib/ti"
 
 class HomepageShare extends Component {
   constructor(props){
@@ -20,7 +20,6 @@ componentWillReceiveProps(props){
     
     let facebookLink = `https://www.facebook.com/sharer/sharer.php?u=www.vitaminlondon.com&picture=&title=&caption=&quote=&description=${blurb}`
     let twitterLink = `https://twitter.com/home?status=${blurb} ${link}`
-    let pinterestLink = `https://pinterest.com/pin/create/button/?url=${link}&media=&description=${blurb}`
     let mailLink = `mailTo:subject=${blurb}body=Check%20it%20out%20at${link}`
     
     return(
@@ -31,8 +30,7 @@ componentWillReceiveProps(props){
             <div className="icons">
             <a target="_blank" href={facebookLink}><TiSocialFacebook/></a>
             <a target="_blank" href={twitterLink}><TiSocialTwitter/></a>
-            <a target="_blank" href={pinterestLink}><TiSocialPinterest/></a>
-            <a target="_blank" href={mailLink}><TiMail/></a>
+            <a target="_blank" className="mail-icon" href={mailLink}><TiMail/></a>
           </div>
           </div>
         </div>

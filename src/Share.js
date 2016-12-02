@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { TiSocialFacebook, TiSocialTwitter, TiSocialPinterest, TiMail } from "react-icons/lib/ti"
+import { TiSocialFacebook, TiSocialTwitter, TiMail } from "react-icons/lib/ti"
 
 class Share extends Component {
   constructor(props){
@@ -21,21 +21,22 @@ componentWillReceiveProps(props){
 
     let facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${link}&picture=&title=&caption=&quote=&description=${quote}%0A${fromText}`
     let twitterLink = `https://twitter.com/home?status=${quote}%0A${fromText} ${link}`
-    let pinterestLink = `https://pinterest.com/pin/create/button/?url=&media=&description=${quote}%0A${link}`
     let mailLink = `mailTo:body=${quote}%0A${fromText}%0A${link}`
     
     let classNames = `share-box ${this.props.selected}`
     return(
       <div className='share-container share-quote'>
         <div className={classNames}>
-         <div className="top-text"><p>Click the festive speech bubble to get something new</p></div>
+         <div className="top-text">
+          {screen.width > 480 && <p>Click the festive speech bubble to get something new</p>}
+          {screen.width <= 480 && <p>Shake that seasonal screen to get something new</p>}
+        </div>
           <div className="icon-container">
           <div className=""><p>Has someone come to mind?<br/>Or is this you all over?</p></div>
             <div className="icons">
             <a target="_blank" href={facebookLink}><TiSocialFacebook/></a>
             <a target="_blank" href={twitterLink}><TiSocialTwitter/></a>
-            <a target="_blank" href={pinterestLink}><TiSocialPinterest/></a>
-            <a target="_blank" href={mailLink}><TiMail/></a>
+            <a target="_blank" className="mail-icon" href={mailLink}><TiMail/></a>
           </div>
           </div>
         </div>

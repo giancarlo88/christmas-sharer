@@ -29,8 +29,8 @@ class ContentContainer extends Component {
       <div 
         className={cssClasses}>
           <Intro className="intro" key={0}/>
-          {screen.width > 768 && <DesktopToggles handleChoiceClick={this.handleChoiceClick.bind(this)}/> }
-          {screen.width <= 768 && <MobileSlider handleChoiceClick={this.handleChoiceClick.bind(this)} /> }
+          {screen.width > 480 && <DesktopToggles handleChoiceClick={this.handleChoiceClick.bind(this)}/> }
+          {screen.width <= 480 && <MobileSlider handleChoiceClick={this.handleChoiceClick.bind(this)} /> }
           <GiftResponses active={this.state.choice==="gift-responses"} />
           <InvitationExcuses active={this.state.choice==="invitation-excuses"} />
           <SeasonsGreetings active={this.state.choice==="seasons-greetings" } />

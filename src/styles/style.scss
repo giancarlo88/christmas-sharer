@@ -40,6 +40,9 @@ $invitation-excuses-gradient: #7583CC;
 $invitation-excuses-banner: #7583CC;
 $invitation-excuses-toggle-button-faded: #4A4A77; 
 
+$background-text-colour: rgba(0, 0, 0, 0.15);
+
+
 
 /*Adapted from https://codepen.io/GhostRider/pen/FctLB/ */
 
@@ -75,7 +78,7 @@ $invitation-excuses-toggle-button-faded: #4A4A77;
   font-size: 200px;
   font-weight: bold;
   max-width: 50%;
-  color: rgba(0, 0, 0, .04);
+  color: rgba(0, 0, 0, 0);
   text-align: left;
   font-family: "DK Saffron Walden", sans-serif;  
   @include transition();
@@ -84,12 +87,18 @@ $invitation-excuses-toggle-button-faded: #4A4A77;
 
 @mixin mobile-bubble(){
   @media (max-height: 625px){
-    margin-top: 25vh
+    margin-top: 30vh
   }
-  margin-top: 15vh;
-  background-image: url(../assets/bubble_mobile.svg);
-  background-size: contain;
-  background-position: 50%;
+  margin-top: 20vh;
+  background-image: url(../assets/bubble_mobile.png);
+  background-size: 110%;
+  background-position: 0% 25%;
+}
+
+@mixin mobile-banner() {
+    background-size: 125%;
+    background-position: 30% 20%;
+    height: 360px;
 }
 
 
@@ -138,11 +147,12 @@ body, html, #root, .App, .content-container {
   overflow: hidden;
 
   h2 {
-    font-size: 23px; 
+    font-size: 22px;
+    line-height: 1.25;
     text-transform: uppercase;
     &.title {
       font-family: 'DK Saffron Walden', sans-serif;
-      text-transform: none;
+      text-transform: uppercase;
     }
   }
 
@@ -176,6 +186,11 @@ body, html, #root, .App, .content-container {
       height: 120px;
       margin: 0 auto;
       top: 0;
+
+      .top-text {
+        margin-left: 15px;
+      }
+
 
       p, .icon-container {
               color: $text-colour;
@@ -285,11 +300,11 @@ body, html, #root, .App, .content-container {
    cursor: pointer;
 
    &.gift-responses {
-    background-image: url(../assets/ribbon.svg), url(../assets/bubble_desktop.svg);
-    background-size: 50% 75%, 550px 310px;
+    background-image: url(../assets/ribbon.svg), url(../assets/bubble_desktop.png);
+    background-size: 50% 75%, 550px 270px;
     background-repeat: no-repeat;
     background-position-x: -20%, center;
-    background-position-y: -2%, center;
+    background-position-y: 17%, -65%;
     transform: translateY(0);
 
     @media (max-width: 480px) {
@@ -298,7 +313,7 @@ body, html, #root, .App, .content-container {
     }
 
    &.invitation-excuses {
-    background-image: url(../assets/reindeer.svg), url(../assets/bubble_desktop.svg);
+    background-image: url(../assets/reindeer.svg), url(../assets/bubble_desktop.png);
     background-size: 50% 50%, 550px 310px;
     background-repeat: no-repeat;
     background-position-x: -20%, center;
@@ -311,7 +326,7 @@ body, html, #root, .App, .content-container {
     }
 
    &.seasons-greetings {
-    background-image: url(../assets/holly.svg), url(../assets/bubble_desktop.svg);
+    background-image: url(../assets/holly.svg), url(../assets/bubble_desktop.png);
     background-size: 55% 60%, 550px 310px;
     background-repeat: no-repeat;
     background-position-x: -40%, center;
@@ -327,27 +342,31 @@ body, html, #root, .App, .content-container {
 
   .pattern-container{
     &.seasons-greetings {
-    opacity: 1;
+    opacity: .15;
     background-image: url(../assets/grid_crosses.svg);
     &:before {
       @include background-text("SEASONS GREETINGS")
+      color: $background-text-colour
       }
     }
 
      &.gift-responses {
-    opacity: 1;
+    opacity: .33;
     background-image: url(../assets/grid_diagonals.svg);
      &:before {
       @include background-text("GIFT RESPONSES")
+            color: $background-text-colour
+
     }
 
   }
      &.invitation-excuses {
-      opacity: 1;
+      opacity: .33;
       background-image: url(../assets/grid_zigzag.svg);
 
     &:before {
       @include background-text("INVITATION EXCUSES")
+      color: $background-text-colour;
     }
  }
   }
@@ -357,6 +376,11 @@ body, html, #root, .App, .content-container {
     transform: translateY(-200%);
     margin: 0 auto;
     width: 40%;
+    height: 30%;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     @include transition();
 
 
@@ -412,7 +436,7 @@ body, html, #root, .App, .content-container {
 
 @media(max-width: 480px){
   width: 100%;
-  height: 175px;
+  height: 225px;
   padding: 0;
 }
 
@@ -462,6 +486,12 @@ body, html, #root, .App, .content-container {
     top: 30px;
     opacity: 1;
     @include transition();
+
+    .icon-container .icons {
+      margin: 0 auto;
+      left: 0;
+    }
+    
   }
 }
 
@@ -514,8 +544,9 @@ body, html, #root, .App, .content-container {
   }
 
   .pattern-container:before {
-    opacity: 0 !important; //Need to refactor
+    color: rgba(0,0,0,0)!important; 
   }
+
 }
 
  .share-box {
@@ -537,14 +568,30 @@ body, html, #root, .App, .content-container {
       @include transition();
 
       &.gift-responses {
-        background-image: url(../assets/gr-banner_desktop.png)
+        background-image: url(../assets/gr-banner_desktop.png);
+        @include mobile-banner();
       }
       &.seasons-greetings {
-        background-image: url(../assets/sg-banner_desktop.png)
+        background-image: url(../assets/sg-banner_desktop.png);
+        @include mobile-banner();
       }
       &.invitation-excuses {
-        background-image: url(../assets/ie-banner_desktop.png)
+        background-image: url(../assets/ie-banner_desktop.png);
+      @include mobile-banner();
       }
+
+      @media (max-width: 480px){
+          &.gift-responses {
+        background-image: url(../assets/gr-banner_mobile.png)
+      }
+      &.seasons-greetings {
+        background-image: url(../assets/sg-banner_mobile.png)
+      }
+      &.invitation-excuses {
+        background-image: url(../assets/ie-banner_mobile.png)
+      }
+      }
+
 
       p {
         color: $home-background;
@@ -553,11 +600,10 @@ body, html, #root, .App, .content-container {
 
       .top-text {
         position: absolute;
-        width: 100%;
         top: 20px;
+        font-size: 14px;
         p {
-          width: 80%;
-          margin: 0 auto;
+          margin-top: 0;
         }
       }
 
@@ -568,16 +614,30 @@ body, html, #root, .App, .content-container {
         bottom: 30px;
         width: 100%;
 
+        p {
+          font-size: 13px;
+        }
+
         .icons {
+          position: relative;
+          left: -10px;
+          top: -10px;
           display: flex;
-          justify-content: space-around;
+          justify-content: space-between;
+          width: 80%;
 
         a {
           padding: 10px 20px;
+
+          &.mail-icon {
+            margin-top: 5px;
+          }
         }
 
+       
+
         svg {
-          font-size: 20px;
+          font-size: 24px;
           cursor: pointer;
 
           &:hover, &:focus {
@@ -623,7 +683,7 @@ body, html, #root, .App, .content-container {
     @include transition();
 
     &:hover {
-      animation: button-animate 1s steps(2) infinite;
+      animation: button-animate .5s steps(2) infinite;
     }
 
     &.gift-responses {
