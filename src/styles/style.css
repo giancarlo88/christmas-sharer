@@ -106,7 +106,11 @@ body, html, #root, .App, .content-container {
       margin: 0 auto;
       top: 0; }
       .content-container > .share-container.homepage .share-box .top-text {
-        margin-left: 15px; }
+        margin-left: 15px;
+        top: 10px;
+        width: 80%; }
+        .content-container > .share-container.homepage .share-box .top-text p {
+          text-align: left; }
       .content-container > .share-container.homepage .share-box p, .content-container > .share-container.homepage .share-box .icon-container {
         color: #1D1E1B; }
       .content-container > .share-container.homepage .share-box .icon-container {
@@ -175,40 +179,40 @@ body, html, #root, .App, .content-container {
         .content-container .choice-contents.gift-responses {
           margin-top: 20vh;
           background-image: url(../assets/bubble_mobile.png);
-          background-size: 110%;
-          background-position: 0% 25%; } }
+          background-size: 110% 100%;
+          background-position: 0 20px; } }
   @media (max-width: 480px) and (max-height: 625px) {
     .content-container .choice-contents.gift-responses {
       margin-top: 30vh; } }
     .content-container .choice-contents.invitation-excuses {
       background-image: url(../assets/reindeer.svg), url(../assets/bubble_desktop.png);
-      background-size: 50% 50%, 550px 310px;
+      background-size: 50% 50%, 550px 270px;
       background-repeat: no-repeat;
-      background-position-x: -20%, center;
-      background-position-y: -21%, center;
+      background-position-x: -11%, center;
+      background-position-y: -17%, -65%;
       transform: translateY(0); }
       @media (max-width: 480px) {
         .content-container .choice-contents.invitation-excuses {
           margin-top: 20vh;
           background-image: url(../assets/bubble_mobile.png);
-          background-size: 110%;
-          background-position: 0% 25%; } }
+          background-size: 110% 100%;
+          background-position: 0 20px; } }
   @media (max-width: 480px) and (max-height: 625px) {
     .content-container .choice-contents.invitation-excuses {
       margin-top: 30vh; } }
     .content-container .choice-contents.seasons-greetings {
       background-image: url(../assets/holly.svg), url(../assets/bubble_desktop.png);
-      background-size: 55% 60%, 550px 310px;
+      background-size: 55% 60%, 550px 270px;
       background-repeat: no-repeat;
       background-position-x: -40%, center;
-      background-position-y: -5%, center;
+      background-position-y: -5%, -65%;
       transform: translateY(0); }
       @media (max-width: 480px) {
         .content-container .choice-contents.seasons-greetings {
           margin-top: 20vh;
           background-image: url(../assets/bubble_mobile.png);
-          background-size: 110%;
-          background-position: 0% 25%; } }
+          background-size: 110% 100%;
+          background-position: 0 20px; } }
   @media (max-width: 480px) and (max-height: 625px) {
     .content-container .choice-contents.seasons-greetings {
       margin-top: 30vh; } }
@@ -302,7 +306,11 @@ body, html, #root, .App, .content-container {
   justify-content: center;
   transition: all 2s ease-in-out;
   transition-property: transform;
-  transition-delay: .5s; }
+  transition-delay: .5s;
+  margin-top: 150px; }
+  @media (min-height: 900px) {
+    .choice-contents {
+      margin-top: 50px; } }
   @media (max-width: 480px) {
     .choice-contents {
       width: 100%;
@@ -317,7 +325,8 @@ body, html, #root, .App, .content-container {
       .choice-contents p {
         font-size: 20px;
         width: 100%;
-        max-width: 250px; } }
+        max-width: 250px;
+        margin-top: -20px; } }
 
 .choice-container {
   align-items: center;
@@ -347,9 +356,13 @@ body, html, #root, .App, .content-container {
     top: 30px;
     opacity: 1;
     transition: all 2s ease-in-out; }
+    @media (max-width: 480px) {
+      .choice-container .share-container .icon-container {
+        bottom: 15%; } }
     .choice-container .share-container .icon-container .icons {
       margin: 0 auto;
-      left: 0; }
+      left: 0;
+      padding: 0 50px; }
 
 .fade-enter {
   opacity: 0; }
@@ -388,40 +401,45 @@ body, html, #root, .App, .content-container {
       justify-content: space-between;*/
   background-repeat: no-repeat;
   top: 31%;
-  height: 350px;
-  width: 275px;
+  height: 410px;
+  width: 400px;
   background-size: cover;
   margin: 0 auto;
   transition: all 2s ease-in-out; }
   .share-box.gift-responses {
-    background-image: url(../assets/gr-banner_desktop.png);
-    background-size: 125%;
-    background-position: 30% 20%;
-    height: 360px; }
+    background-image: url(../assets/gr-banner_desktop.png); }
   .share-box.seasons-greetings {
-    background-image: url(../assets/sg-banner_desktop.png);
-    background-size: 125%;
-    background-position: 30% 20%;
-    height: 360px; }
+    background-image: url(../assets/sg-banner_desktop.png); }
   .share-box.invitation-excuses {
-    background-image: url(../assets/ie-banner_desktop.png);
-    background-size: 125%;
-    background-position: 30% 20%;
-    height: 360px; }
+    background-image: url(../assets/ie-banner_desktop.png); }
   @media (max-width: 480px) {
     .share-box.gift-responses {
-      background-image: url(../assets/gr-banner_mobile.png); }
+      background-image: url(../assets/gr-banner_mobile.png);
+      background-size: cover;
+      height: 70%;
+      width: 100%;
+      background-position-x: 30%; }
     .share-box.seasons-greetings {
-      background-image: url(../assets/sg-banner_mobile.png); }
+      background-image: url(../assets/sg-banner_mobile.png);
+      background-size: cover;
+      height: 70%;
+      width: 100%;
+      background-position-x: 30%; }
     .share-box.invitation-excuses {
-      background-image: url(../assets/ie-banner_mobile.png); } }
+      background-image: url(../assets/ie-banner_mobile.png);
+      background-size: cover;
+      height: 70%;
+      width: 100%;
+      background-position-x: 30%; } }
   .share-box p {
     color: #F6F6F6;
     font-size: 16px; }
   .share-box .top-text {
-    position: absolute;
-    top: 20px;
-    font-size: 14px; }
+    position: relative;
+    top: 50px;
+    font-size: 14px;
+    margin: 0 auto;
+    width: 60%; }
     .share-box .top-text p {
       margin-top: 0; }
   .share-box .icon-container {
@@ -436,8 +454,7 @@ body, html, #root, .App, .content-container {
       left: -10px;
       top: -10px;
       display: flex;
-      justify-content: space-between;
-      width: 80%; }
+      justify-content: center; }
       .share-box .icon-container .icons a {
         padding: 10px 20px; }
         .share-box .icon-container .icons a.mail-icon {
