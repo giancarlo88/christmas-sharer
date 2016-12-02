@@ -39,7 +39,7 @@ render() {
   <div className={classNames}>
     <div className="pattern-container invitation-excuses"/>
     <ChoiceContents callAPI={this.callAPI.bind(this)} active="invitation-excuses" data={this.state.data} />
-      <Share quote={this.state.data} active={this.state.active}/>
+    <Share selected='invitation-excuses' quote={this.state.data} active={this.state.active}/>
   </div>
   )
 }

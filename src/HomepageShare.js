@@ -16,7 +16,7 @@ componentWillReceiveProps(props){
   
   render (){
     let link = 'http://www.vitaminlondon.com'
-    let blurb = 'Better%20than%20a%20card%2C%20worse%20than%20a%20present%3A%20a%20digital%20gift%20that%20keeps%20on%20giving%2C%20from%20Vitamin%20London'
+    let blurb = 'Better%20than%20a%20card%2C%20worse%20than%20a%20present%20%E2%80%94%20a%20digital%20gift%20that%20keeps%20on%20giving.%20%0AFrom%20Vitamin%20London'
     
     let facebookLink = `https://www.facebook.com/sharer/sharer.php?u=www.vitaminlondon.com&picture=&title=&caption=&quote=&description=${blurb}`
     let twitterLink = `https://twitter.com/home?status=${blurb} ${link}`

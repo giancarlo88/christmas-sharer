@@ -57,6 +57,11 @@ $invitation-excuses-toggle-button-faded: #4A4A77;
 	100% { transform: translate(1px, -1px) rotate(-1deg); }
 }
 
+@keyframes button-animate {
+  from { background-position-Y: 0; }
+  to { background-position-Y: 200%;}
+}
+
 @mixin transition() {
   transition: all 2s ease-in-out;
 }
@@ -78,6 +83,10 @@ $invitation-excuses-toggle-button-faded: #4A4A77;
 }
 
 @mixin mobile-bubble(){
+  @media (max-height: 625px){
+    margin-top: 25vh
+  }
+  margin-top: 15vh;
   background-image: url(../assets/bubble_mobile.svg);
   background-size: contain;
   background-position: 50%;
@@ -110,8 +119,9 @@ body, html, #root, .App, .content-container {
 }
 
 .pattern-container {
-    margin-top: 5vh;
+    margin-top: 100px;
     height: 100vh;
+    top:0;
     width: 100%;
     position: absolute;
     left: 0;
@@ -159,16 +169,13 @@ body, html, #root, .App, .content-container {
     }
 
     .share-box {
-      /*background-color: #FFF;*/
       background-image: url(../assets/share_tag.svg);
-      mask-image: none;
       background-size: contain;
       background-repeat: no-repeat;
-      //border-radius: 10px;
-      //box-shadow: 0px 7px 8px 0px #32323C;
       width: 300px;
       height: 120px;
       margin: 0 auto;
+      top: 0;
 
       p, .icon-container {
               color: $text-colour;
@@ -216,6 +223,7 @@ body, html, #root, .App, .content-container {
     .toggle-container  {
           transform: translateY(30vh);
         .choice-toggle {
+          background-color: $home-background;
           opacity: 1;
           color: $text-colour;
       }
@@ -230,9 +238,6 @@ body, html, #root, .App, .content-container {
       background-color: $gift-responses-banner;
       border-color: $gift-responses-banner;
       }
-    }
-    .choice-container .share-box {
-      background-color: $gift-responses-banner;
     }
     .choice-toggle.gift-responses {
       color: $text-colour;
@@ -251,10 +256,6 @@ body, html, #root, .App, .content-container {
       border-color: $invitation-excuses-banner;
       }
     }
-    .choice-container .share-box {
-      background-color: $invitation-excuses-banner;
-      ;
-    }
     .choice-toggle.invitation-excuses {
       color: $text-colour;
       
@@ -271,10 +272,6 @@ body, html, #root, .App, .content-container {
       background-color: $seasons-greetings-banner;
       border-color: $seasons-greetings-banner;
       }
-    }
-    .choice-container .share-box {
-      background-color: $seasons-greetings-banner;
-      ;
     }
     .choice-toggle.seasons-greetings {
       color: $text-colour;
@@ -415,7 +412,7 @@ body, html, #root, .App, .content-container {
 
 @media(max-width: 480px){
   width: 100%;
-  height: 150px;
+  height: 175px;
   padding: 0;
 }
 
@@ -438,13 +435,13 @@ body, html, #root, .App, .content-container {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 375px;
   justify-content: center;
   position: absolute;
   left: 0;
-  top: 35%;
+  top: 0;
   @include transition();
   width: 100%;
+  height: 100%;
 
   button {
     appearance: none;
@@ -527,15 +524,27 @@ body, html, #root, .App, .content-container {
       position: relative;
       /*flex-direction: column; 
       justify-content: space-between;*/
-      mask-image: url(../assets/banner_desktop.svg);
+      // mask-image: url(../assets/banner_desktop.svg);
       background-repeat: no-repeat;
+      top: 31%;
       //background-color: #FFF;
       //border-radius: 10px;
       //box-shadow: 0px 7px 8px 0px #32323C;
       height:350px;
       width: 275px;
+      background-size: cover;
       margin: 0 auto;
       @include transition();
+
+      &.gift-responses {
+        background-image: url(../assets/gr-banner_desktop.png)
+      }
+      &.seasons-greetings {
+        background-image: url(../assets/sg-banner_desktop.png)
+      }
+      &.invitation-excuses {
+        background-image: url(../assets/ie-banner_desktop.png)
+      }
 
       p {
         color: $home-background;
@@ -607,10 +616,15 @@ body, html, #root, .App, .content-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-size: 175px;
     height: 175px;
     width: 175px;
     position: relative;
     @include transition();
+
+    &:hover {
+      animation: button-animate 1s steps(2) infinite;
+    }
 
     &.gift-responses {
       background-image: url(../assets/cta_diagonals.svg)

@@ -36,6 +36,12 @@
   100% {
     transform: translate(1px, -1px) rotate(-1deg); } }
 
+@keyframes button-animate {
+  from {
+    background-position-Y: 0; }
+  to {
+    background-position-Y: 200%; } }
+
 @keyframes fadeIn {
   from {
     opacity: 0; }
@@ -53,8 +59,9 @@ body, html, #root, .App, .content-container {
   opacity: 1; }
 
 .pattern-container {
-  margin-top: 5vh;
+  margin-top: 100px;
   height: 100vh;
+  top: 0;
   width: 100%;
   position: absolute;
   left: 0;
@@ -90,14 +97,13 @@ body, html, #root, .App, .content-container {
       .content-container > .share-container.homepage {
         bottom: 5%; } }
     .content-container > .share-container.homepage .share-box {
-      /*background-color: #FFF;*/
       background-image: url(../assets/share_tag.svg);
-      mask-image: none;
       background-size: contain;
       background-repeat: no-repeat;
       width: 300px;
       height: 120px;
-      margin: 0 auto; }
+      margin: 0 auto;
+      top: 0; }
       .content-container > .share-container.homepage .share-box p, .content-container > .share-container.homepage .share-box .icon-container {
         color: #1D1E1B; }
       .content-container > .share-container.homepage .share-box .icon-container {
@@ -122,6 +128,7 @@ body, html, #root, .App, .content-container {
     .content-container.none .toggle-container {
       transform: translateY(30vh); }
       .content-container.none .toggle-container .choice-toggle {
+        background-color: #F6F6F6;
         opacity: 1;
         color: #1D1E1B; }
   .content-container.gift-responses {
@@ -130,8 +137,6 @@ body, html, #root, .App, .content-container {
     .content-container.gift-responses .toggle-button-container .choice-toggle, .content-container.gift-responses .toggle-button-container .choice-toggle:after {
       background-color: #E24A6B;
       border-color: #E24A6B; }
-    .content-container.gift-responses .choice-container .share-box {
-      background-color: #E24A6B; }
     .content-container.gift-responses .choice-toggle.gift-responses {
       color: #1D1E1B; }
       .content-container.gift-responses .choice-toggle.gift-responses:after {
@@ -141,8 +146,6 @@ body, html, #root, .App, .content-container {
     .content-container.invitation-excuses .toggle-button-container .choice-toggle, .content-container.invitation-excuses .toggle-button-container .choice-toggle:after {
       background-color: #7583CC;
       border-color: #7583CC; }
-    .content-container.invitation-excuses .choice-container .share-box {
-      background-color: #7583CC; }
     .content-container.invitation-excuses .choice-toggle.invitation-excuses {
       color: #1D1E1B; }
       .content-container.invitation-excuses .choice-toggle.invitation-excuses:after {
@@ -152,8 +155,6 @@ body, html, #root, .App, .content-container {
     .content-container.seasons-greetings .toggle-button-container .choice-toggle, .content-container.seasons-greetings .toggle-button-container .choice-toggle:after {
       background-color: #88C685;
       border-color: #88C685; }
-    .content-container.seasons-greetings .choice-container .share-box {
-      background-color: #88C685; }
     .content-container.seasons-greetings .choice-toggle.seasons-greetings {
       color: #1D1E1B; }
       .content-container.seasons-greetings .choice-toggle.seasons-greetings:after {
@@ -169,9 +170,13 @@ body, html, #root, .App, .content-container {
       transform: translateY(0); }
       @media (max-width: 480px) {
         .content-container .choice-contents.gift-responses {
+          margin-top: 15vh;
           background-image: url(../assets/bubble_mobile.svg);
           background-size: contain;
           background-position: 50%; } }
+  @media (max-width: 480px) and (max-height: 625px) {
+    .content-container .choice-contents.gift-responses {
+      margin-top: 25vh; } }
     .content-container .choice-contents.invitation-excuses {
       background-image: url(../assets/reindeer.svg), url(../assets/bubble_desktop.svg);
       background-size: 50% 50%, 550px 310px;
@@ -181,9 +186,13 @@ body, html, #root, .App, .content-container {
       transform: translateY(0); }
       @media (max-width: 480px) {
         .content-container .choice-contents.invitation-excuses {
+          margin-top: 15vh;
           background-image: url(../assets/bubble_mobile.svg);
           background-size: contain;
           background-position: 50%; } }
+  @media (max-width: 480px) and (max-height: 625px) {
+    .content-container .choice-contents.invitation-excuses {
+      margin-top: 25vh; } }
     .content-container .choice-contents.seasons-greetings {
       background-image: url(../assets/holly.svg), url(../assets/bubble_desktop.svg);
       background-size: 55% 60%, 550px 310px;
@@ -193,9 +202,13 @@ body, html, #root, .App, .content-container {
       transform: translateY(0); }
       @media (max-width: 480px) {
         .content-container .choice-contents.seasons-greetings {
+          margin-top: 15vh;
           background-image: url(../assets/bubble_mobile.svg);
           background-size: contain;
           background-position: 50%; } }
+  @media (max-width: 480px) and (max-height: 625px) {
+    .content-container .choice-contents.seasons-greetings {
+      margin-top: 25vh; } }
   .content-container .pattern-container.seasons-greetings {
     opacity: 1;
     background-image: url(../assets/grid_crosses.svg); }
@@ -282,7 +295,7 @@ body, html, #root, .App, .content-container {
   @media (max-width: 480px) {
     .choice-contents {
       width: 100%;
-      height: 150px;
+      height: 175px;
       padding: 0; } }
   .choice-contents p {
     margin: 0 auto;
@@ -299,13 +312,13 @@ body, html, #root, .App, .content-container {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 375px;
   justify-content: center;
   position: absolute;
   left: 0;
-  top: 35%;
+  top: 0;
   transition: all 2s ease-in-out;
-  width: 100%; }
+  width: 100%;
+  height: 100%; }
   .choice-container button {
     appearance: none;
     background: transparent;
@@ -359,12 +372,19 @@ body, html, #root, .App, .content-container {
   position: relative;
   /*flex-direction: column; 
       justify-content: space-between;*/
-  mask-image: url(../assets/banner_desktop.svg);
   background-repeat: no-repeat;
+  top: 31%;
   height: 350px;
   width: 275px;
+  background-size: cover;
   margin: 0 auto;
   transition: all 2s ease-in-out; }
+  .share-box.gift-responses {
+    background-image: url(../assets/gr-banner_desktop.png); }
+  .share-box.seasons-greetings {
+    background-image: url(../assets/sg-banner_desktop.png); }
+  .share-box.invitation-excuses {
+    background-image: url(../assets/ie-banner_desktop.png); }
   .share-box p {
     color: #F6F6F6;
     font-size: 16px; }
@@ -416,10 +436,13 @@ body, html, #root, .App, .content-container {
       display: flex;
       align-items: center;
       justify-content: center;
+      background-size: 175px;
       height: 175px;
       width: 175px;
       position: relative;
       transition: all 2s ease-in-out; }
+      .toggle-container .toggle-button-container .choice-toggle:hover {
+        animation: button-animate 1s steps(2) infinite; }
       .toggle-container .toggle-button-container .choice-toggle.gift-responses {
         background-image: url(../assets/cta_diagonals.svg); }
       .toggle-container .toggle-button-container .choice-toggle.seasons-greetings {

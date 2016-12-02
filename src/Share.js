@@ -20,12 +20,14 @@ componentWillReceiveProps(props){
     let link = 'www.vitaminlondon.com'
 
     let facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${link}&picture=&title=&caption=&quote=&description=${quote}%0A${fromText}`
-    let twitterLink = `https://twitter.com/home?status=${quote} ${fromText}$0A${link}`
+    let twitterLink = `https://twitter.com/home?status=${quote}%0A${fromText} ${link}`
     let pinterestLink = `https://pinterest.com/pin/create/button/?url=&media=&description=${quote}%0A${link}`
-    let mailLink = `mailTo:body=${quote} ${fromText}%0A${link}`
+    let mailLink = `mailTo:body=${quote}%0A${fromText}%0A${link}`
+    
+    let classNames = `share-box ${this.props.selected}`
     return(
       <div className='share-container share-quote'>
-        <div className="share-box">
+        <div className={classNames}>
          <div className="top-text"><p>Click the festive speech bubble to get something new</p></div>
           <div className="icon-container">
           <div className=""><p>Has someone come to mind?<br/>Or is this you all over?</p></div>

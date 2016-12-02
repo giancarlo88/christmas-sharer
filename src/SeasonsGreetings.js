@@ -38,7 +38,7 @@ componentDidMount(){
       <div className={classNames}>
       <div className="pattern-container seasons-greetings"/>
        <ChoiceContents callAPI={this.callAPI.bind(this)} active="seasons-greetings" data={this.state.data}/>
-       <Share quote={this.state.data} active={this.state.active}/>
+       <Share selected='seasons-greetings' quote={this.state.data} active={this.state.active}/>
       </div>
     )
   }
