@@ -16,7 +16,6 @@ import HomepageShare from "./HomepageShare"
 // }
 
 class ContentContainer extends Component {
-  
   state = {
     choice: "none"
   }

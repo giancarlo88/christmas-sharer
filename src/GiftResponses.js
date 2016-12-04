@@ -13,7 +13,6 @@ callAPI(){
     method: "GET",
     dataType: "json",
     success: function(data) {
-      console.log(data)
       let quote = data.quotes[ Math.floor(Math.random()*data.quotes.length)]
       this.setState({data: quote})
     }.bind(this)

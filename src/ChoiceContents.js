@@ -2,9 +2,22 @@ import React, { Component } from "react";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Quote from './Quote'
 
+import Shake from 'shake.js'
+
 
 class ChoiceContents extends Component {
-  
+  handleShake() {
+    const shakeEvent = new Shake({
+      timeout: 5000,
+      threshold: 30
+       
+    })
+    shakeEvent.start()
+    window.addEventListener('shake', this.props.callAPI, false)
+  }
+   componentWillMount(){
+    this.handleShake();
+  }
   render() {
     let classNames = `choice-contents ${this.props.active}`
     return (

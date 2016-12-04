@@ -86,10 +86,6 @@ $background-text-colour: rgba(0, 0, 0, 0.15);
 }
 
 @mixin mobile-bubble(){
-  @media (max-height: 625px){
-    margin-top: 30vh
-  }
-  margin-top: 20vh;
   background-image: url(../assets/bubble_mobile.png);
   background-size: 110% 100%;
   background-position: 0 20px;
@@ -188,7 +184,6 @@ body, html, #root, .App, .content-container {
       margin: 0 auto;
       top: 0;
 
-
       .top-text {
         margin-left: 15px;
         top: 10px;
@@ -196,6 +191,7 @@ body, html, #root, .App, .content-container {
 
         p { 
           text-align: left;
+          margin-top: 10px;
         }
 
       }
@@ -207,9 +203,14 @@ body, html, #root, .App, .content-container {
 
       .icon-container {
         bottom: 0;
+        left: 0;
 
         p {
           display: none;
+        }
+
+        .icons {
+          justify-content: flex-start;
         }
       }
     }
@@ -431,6 +432,7 @@ body, html, #root, .App, .content-container {
   width: 600px;
   height: 200px;
   padding: 25px;
+  position: relative;
   z-index: 2;
   top: 85px;
   font-family: "DK Saffron Walden", sans-serif;
@@ -441,13 +443,7 @@ body, html, #root, .App, .content-container {
   @include transition();
   transition-property: transform;
   transition-delay: .5s;
-  margin-top: 150px;
-
-@media (min-height: 900px) {
-  margin-top: 50px;
-}
-
-
+  
 
 @media(max-width: 480px){
   width: 100%;
@@ -497,11 +493,19 @@ body, html, #root, .App, .content-container {
     transform: none;
     position: absolute;
     left: 0;
+    top: 0;
+    margin-top: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     width: 100%;
-    top: 30px;
     opacity: 1;
     @include transition();
+    
+    @media (max-width: 480px){
+      margin-top: 100px;
+    }
 
     .icon-container {
     
@@ -581,7 +585,6 @@ body, html, #root, .App, .content-container {
       justify-content: space-between;*/
       // mask-image: url(../assets/banner_desktop.svg);
       background-repeat: no-repeat;
-      top: 31%;
       //background-color: #FFF;
       //border-radius: 10px;
       //box-shadow: 0px 7px 8px 0px #32323C;
@@ -640,6 +643,7 @@ body, html, #root, .App, .content-container {
         color: $home-background;
         position: absolute;
         bottom: 30px;
+        left: 0;
         width: 100%;
 
         p {
@@ -770,4 +774,15 @@ body, html, #root, .App, .content-container {
 
 .slick-slide {
   width: 175px !important;
+}
+
+
+.slider-decorator-0,
+.slider-decorator-1 {
+  button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+  }
 }

@@ -15,12 +15,13 @@ componentWillReceiveProps(props){
 }
   
   render (){
-    let link = 'http://www.vitaminlondon.com'
+    let link = 'http://christmas.vitaminlondon.com/16'
     let blurb = 'Better%20than%20a%20card%2C%20worse%20than%20a%20present%20%E2%80%94%20a%20digital%20gift%20that%20keeps%20on%20giving.%20%0AFrom%20Vitamin%20London'
-    
+    let shortBlurb = 'Better%20than%20a%20card%2C%20worse%20than%20a%20present%20%E2%80%94%20a%20gift%20that%20keeps%20on%20giving.'
+
     let facebookLink = `https://www.facebook.com/sharer/sharer.php?u=www.vitaminlondon.com&picture=&title=&caption=&quote=&description=${blurb}`
-    let twitterLink = `https://twitter.com/home?status=${blurb} ${link}`
-    let mailLink = `mailTo:subject=${blurb}body=Check%20it%20out%20at${link}`
+    let twitterLink = `https://twitter.com/intent/tweet?text=${shortBlurb}&url=${link}&via=vitaminlondon&hashtags=ohohoh`
+    let mailLink = `mailTo:?subject=${blurb}&body=Check%20it%20out%20at%20${link}`
     
     return(
       <div className='share-container homepage'>

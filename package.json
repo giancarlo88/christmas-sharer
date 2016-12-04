@@ -2,6 +2,7 @@
   "name": "xmas",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://christmas.vitaminlondon.com/16",
   "devDependencies": {
     "node-sass": "^3.13.0",
     "react-scripts": "0.7.0",

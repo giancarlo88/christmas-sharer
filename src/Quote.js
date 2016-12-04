@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 class Quote extends Component {
   componentWillUnmount(){
-    console.log("unmount")
   }
   render() {
     return (
