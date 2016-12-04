@@ -517,7 +517,7 @@ body, html, #root, .App, .content-container {
 .fade-enter.fade-enter-active {
   transform: translateY(0);
   transition: all 2s ease-in-out;
-  transition-duration: .2s; }
+  transition-duration: .1s; }
 
 .fade-leave {
   transform: translateY(0); }
@@ -525,7 +525,7 @@ body, html, #root, .App, .content-container {
 .fade-leave.fade-leave-active {
   transform: translateY(100%);
   transition: all 2s ease-in-out;
-  transition-duration: 2s; }
+  transition-duration: .1s; }
 
 .slick-track, .slick-slider {
   display: flex; }

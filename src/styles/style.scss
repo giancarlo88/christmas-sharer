@@ -755,7 +755,7 @@ body, html, #root, .App, .content-container {
 .fade-enter.fade-enter-active {
   transform: translateY(0);
   @include transition();
-  transition-duration: .2s;
+  transition-duration: .1s;
 }
 
 .fade-leave {
@@ -765,7 +765,7 @@ body, html, #root, .App, .content-container {
 .fade-leave.fade-leave-active {
   transform: translateY(100%);
   @include transition();
-  transition-duration: 2s;
+  transition-duration: .1s;
 }
 
 .slick-track, .slick-slider {

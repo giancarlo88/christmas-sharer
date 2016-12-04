@@ -8,8 +8,8 @@ import Shake from 'shake.js'
 class ChoiceContents extends Component {
   handleShake() {
     const shakeEvent = new Shake({
-      timeout: 5000,
-      threshold: 30
+      timeout: 500,
+      threshold: 5
        
     })
     shakeEvent.start()
@@ -25,8 +25,8 @@ class ChoiceContents extends Component {
         <ReactCSSTransitionGroup
           transitionName="fade"
           transitionAppear={true}
-          transitionAppearTimeout={900}
-          transitionEnterTimeout={900}
+          transitionAppearTimeout={300}
+          transitionEnterTimeout={100}
           transitionLeaveTimeout={100}>
             <Quote key={this.props.data} data={this.props.data}/>
         </ReactCSSTransitionGroup>
