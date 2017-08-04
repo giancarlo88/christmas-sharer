@@ -31,7 +31,7 @@ let Decorators = [
     render() {
       return (
         <button style={{fontSize: '30px'}}
-          onClick={this.props.NextSlide}>
+          onClick={this.props.nextSlide}>
            ⟩
         </button>
       )

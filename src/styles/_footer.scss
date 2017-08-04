@@ -1,0 +1,102 @@
+.footer-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 300px;
+  width: 100%;
+  border-top: 0px solid #B5D136;
+  transition: all .2s ease;
+  z-index: 10;
+  color: white;
+  font-family: 'Cabin', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+ &.lowered{
+  transform: translateY(263px);
+ }
+  &:hover {
+    border-top: 4px solid #B5D136;
+  }
+
+  .top {
+    height: 37px;
+    width: 100%;
+    background-color: #515151;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 1px 11px 32px 0px black;
+    position: relative;
+    z-index: 11;
+
+
+    .logo { 
+      background-image: url(http://codebase.vitaminlabs.co.uk/footer/assets/logo.png);
+      background-size: contain;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      margin: 0 10px;
+      height: 25px;
+      width: 30px;
+    }
+
+    a, a:visited { 
+      text-decoration: none;
+      color: white;
+      font-size: 12px;
+      margin: 0 10px;
+    }
+  }
+
+  .signatures {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #212121;
+    height: 100%;
+
+    .signature-container {
+      margin: 0 10px;
+
+      h5, h6 {
+        margin: 5px 0;
+      }
+
+      h5 {
+        color: #BDBDBD
+      }
+
+      h6 {
+        color: #595959;
+      }
+    }
+    
+    .signature-image {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 120px;
+      height: 120px;
+
+      &.gg {
+        background-image: url(http://codebase.vitaminlabs.co.uk/footer/assets/carlo.jpg);
+        &:hover {
+        $random: random();
+        background-image: url(http://codebase.vitaminlabs.co.uk/footer/assets/carlo.gif);
+        }
+      }
+      &.bl {
+        background-image: url(http://codebase.vitaminlabs.co.uk/footer/assets/bob.jpg);
+        &:hover {
+        $random: random();
+        background-image: url(http://codebase.vitaminlabs.co.uk/footer/assets/bob.gif);
+        }
+      }
+
+
+    }
+
+
+  }
+
+}

@@ -1,0 +1,781 @@
+
+* {
+  min-height: 0;
+  min-width: 0;
+}
+
+//Need @font-face for Charter as well.
+
+$shadow: rgba(255, 255, 255, .15);
+$pattern-colour: rgba(255, 255, 255, .33);
+
+
+$home-background: #F6F6F6;
+$text-colour: #1D1E1B;
+$text-inactive: grey;
+$bubble-colour: #FFF;
+$banner-shadow: box-shadow(15px 15px 15px 15px $shadow);
+
+$gift-responses-gradient: #E24A6B;
+//$gift-responses-gradient: linear-gradient(30deg, #F95A5A, #E24A6B);
+$gift-responses-banner: #E24A6B;
+$gift-responses-toggle-button-faded: #AF3838;
+
+$seasons-greetings-gradient:#88C685;
+/*$seasons-greetings-gradient: linear-gradient(30deg, #88C685, #51BD6C);*/
+$seasons-greetings-banner: #88C685;
+$seasons-greetings-toggle-button-faded: #659160;
+
+$invitation-excuses-gradient: #7583CC;
+/*$invitation-excuses-gradient: linear-gradient(30deg, #7583CC, #7C6ACC);*/
+$invitation-excuses-banner: #7583CC;
+$invitation-excuses-toggle-button-faded: #4A4A77; 
+
+$background-text-colour: rgba(0, 0, 0, 0.15);
+
+
+
+/*Adapted from https://codepen.io/GhostRider/pen/FctLB/ */
+
+@keyframes wiggle {
+	0% {  transform: translate(1px, 1px) rotate(0deg); }
+	10% { transform: translate(-1px, -1px) rotate(-1deg); }
+	20% { transform: translate(-1px, 0px) rotate(1deg); }
+	30% { transform: translate(0px, 1px) rotate(0deg); }
+	40% { transform: translate(1px, -1px) rotate(1deg); }
+	50% { transform: translate(-1px, 1px) rotate(-1deg); }
+	60% { transform: translate(-1px, 1px) rotate(0deg); }
+	70% { transform: translate(1px, 1px) rotate(-1deg); }
+	80% { transform: translate(-1px, -1px) rotate(1deg); }
+	90% { transform: translate(1px, 1px) rotate(0deg); }
+	100% { transform: translate(1px, -1px) rotate(-1deg); }
+}
+
+@keyframes button-animate {
+  from { background-position-Y: 0; }
+  to { background-position-Y: 200%;}
+}
+
+@mixin transition() {
+  transition: all 2s ease-in-out;
+}
+
+@mixin background-text($text) {
+  content: $text;
+  position: absolute;
+  z-index: 0;
+  bottom: 100px;
+  left: -50px;
+  font-size: 200px;
+  font-weight: bold;
+  max-width: 50%;
+  color: rgba(0, 0, 0, 0);
+  text-align: left;
+  font-family: "DK Saffron Walden", sans-serif;  
+  @include transition();
+  transition-delay: 1.5s;
+}
+
+@mixin mobile-bubble(){
+  background-image: url(../assets/bubble_mobile.png);
+  background-size: 110% 100%;
+  background-position: 0 20px;
+}
+
+@mixin mobile-banner() {
+    background-size: cover;
+    height: 70%;
+    width: 100%;
+    background-position-x: 30%
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+
+
+
+
+body, html, #root, .App, .content-container {
+  position: relative;
+  height: 100%;
+  text-align: center;
+  font-family: "Charter", Georgia, 'Times New Roman', Times, serif
+}
+
+
+.shake:hover, .shake:focus {
+  animation: wiggle .5s infinite;
+  opacity: 1;
+}
+
+.pattern-container {
+    margin-top: 100px;
+    height: 100vh;
+    top:0;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    background-size: 175px; 
+    transform: translateY(100%);
+    @include transition();
+    transition-delay: .5s;
+}
+
+.content-container {
+  padding: 0 10px;
+  @include transition();
+  will-change: background-color;
+  overflow: hidden;
+
+  h2 {
+    font-size: 22px;
+    line-height: 1.25;
+    text-transform: uppercase;
+    &.title {
+      font-family: 'DK Saffron Walden', sans-serif;
+      text-transform: uppercase;
+    }
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+   &>.share-container.homepage,  { //State when homepage is loaded
+    transform: none;
+    bottom: 40px;
+    left:0;
+    position: absolute;
+    width: 100%;
+    height: 121px;
+    opacity: 1;
+
+    a, a:visited {
+      color: $text-colour;
+
+    }
+
+    @media(max-width: 480px){
+      bottom: 10%;
+    }
+
+    .share-box {
+      background-image: url(../assets/share_tag.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 300px;
+      height: 120px;
+      margin: 0 auto;
+      top: 0;
+
+      .top-text {
+        margin-left: 15px;
+        top: 10px;
+        width: 80%;
+
+        p { 
+          text-align: left;
+          margin-top: 10px;
+        }
+
+      }
+
+
+      p, .icon-container {
+              color: $text-colour;
+      }
+
+      .icon-container {
+        bottom: 0;
+        left: 0;
+
+        p {
+          display: none;
+        }
+
+        .icons {
+          justify-content: center;
+          width: 75%;
+        }
+      }
+    }
+    }
+  
+  &.seasons-greetings,
+  &.invitation-excuses,
+  &.gift-responses {
+    .share-container.homepage { //hidden state after option is selected
+      @include transition();
+      transform: translateY(2000px);
+      opacity: 0;
+      }  
+
+      a, a:visited {
+        color: $home-background;
+      }
+
+      .pattern-container {
+        transform: translateY(0);
+          &:before {
+            opacity: 1
+          }
+        
+      }
+  }
+
+ &.none {
+      background-color: $home-background; // Need to be gradients
+
+        .intro {
+          transform: translateY(0);
+          @include transition();
+        }
+    .toggle-container  {
+          transform: translateY(30vh);
+        .choice-toggle {
+          background-color: $home-background;
+          opacity: 1;
+          color: $text-colour;
+      }
+    }
+  } 
+
+  &.gift-responses {
+    background: $gift-responses-gradient;
+    border-color: $gift-responses-banner;
+    .toggle-button-container {
+      .choice-toggle, .choice-toggle:after {
+      background-color: $gift-responses-banner;
+      border-color: $gift-responses-banner;
+      }
+    }
+    .choice-toggle.gift-responses {
+      color: $text-colour;
+
+      &:after {
+        background-color: transparent;
+      }
+      }
+  }
+  
+  &.invitation-excuses {
+    background: $invitation-excuses-gradient;
+    .toggle-button-container {
+       .choice-toggle, .choice-toggle:after {
+      background-color: $invitation-excuses-banner;
+      border-color: $invitation-excuses-banner;
+      }
+    }
+    .choice-toggle.invitation-excuses {
+      color: $text-colour;
+      
+       &:after {
+        background-color: transparent;
+      }
+    }
+  }
+  
+  &.seasons-greetings {
+    background: $seasons-greetings-gradient;
+    .toggle-button-container {
+      .choice-toggle, .choice-toggle:after {
+      background-color: $seasons-greetings-banner;
+      border-color: $seasons-greetings-banner;
+      }
+    }
+    .choice-toggle.seasons-greetings {
+      color: $text-colour;
+       &:after {
+        background-color: transparent;
+      }
+    }
+  }
+
+ .choice-contents{
+   cursor: pointer;
+
+   &.gift-responses {
+    background-image: url(../assets/ribbon.svg), url(../assets/bubble_desktop.png);
+    background-size: 50% 75%, 550px 270px;
+    background-repeat: no-repeat;
+    background-position-x: -20%, center;
+    background-position-y: 17%, -65%;
+    transform: translateY(0);
+
+    @media (max-width: 480px) {
+    @include mobile-bubble();
+    }
+    }
+
+   &.invitation-excuses {
+    background-image: url(../assets/reindeer.svg), url(../assets/bubble_desktop.png);
+    background-size: 50% 50%, 550px 270px;
+    background-repeat: no-repeat;
+    background-position-x: -11%, center;
+    background-position-y: -17%, -65%;
+    transform: translateY(0);
+
+    @media (max-width: 480px) {
+      @include mobile-bubble();
+    }
+    }
+
+   &.seasons-greetings {
+    background-image: url(../assets/holly.svg), url(../assets/bubble_desktop.png);
+    background-size: 55% 60%, 550px 270px;
+    background-repeat: no-repeat;
+    background-position-x: -40%, center;
+    background-position-y: -5%, -65%;
+    transform: translateY(0);
+
+     @media (max-width: 480px) {
+    @include mobile-bubble();
+    }
+  }  
+ }
+
+
+  .pattern-container{
+    &.seasons-greetings {
+    opacity: .15;
+    background-image: url(../assets/grid_crosses.svg);
+    &:before {
+      @include background-text("SEASONS GREETINGS")
+      color: $background-text-colour
+      }
+    }
+
+     &.gift-responses {
+    opacity: .33;
+    background-image: url(../assets/grid_diagonals.svg);
+     &:before {
+      @include background-text("GIFT RESPONSES")
+            color: $background-text-colour
+
+    }
+
+  }
+     &.invitation-excuses {
+      opacity: .33;
+      background-image: url(../assets/grid_zigzag.svg);
+
+    &:before {
+      @include background-text("INVITATION EXCUSES")
+      color: $background-text-colour;
+    }
+ }
+  }
+
+
+  .intro {
+    transform: translateY(-200%);
+    margin: 0 auto;
+    width: 40%;
+    max-width: 450px;
+    height: 30%;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    @include transition();
+
+
+
+  &.fade-leave {
+  height: 30deg;
+  @include transition();
+
+
+  &.fade-leave-active {
+   height: 0;
+  }
+}
+
+    @media(max-width: 480px){
+      width:100%;
+      p {
+        font-size: 13px;
+      }
+
+      h2 {
+        margin: 0 5px;
+      }
+      }
+    }
+  }
+
+
+
+
+
+ 
+
+
+
+
+.choice-contents {
+  
+  width: 600px;
+  height: 200px;
+  padding: 25px;
+  position: relative;
+  z-index: 2;
+  top: 80px;
+  font-family: "DK Saffron Walden", sans-serif;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include transition();
+  transition-property: transform;
+  transition-delay: .5s;
+  
+
+@media(max-width: 480px){
+  width: 100%;
+  height: 225px;
+  padding: 0;
+}
+
+  p {
+    margin: 0 auto;
+    margin-top: -30px;
+    width: 375px;
+    font-size: 24px;
+
+    @media (max-width: 480px){
+      font-size: 20px;
+      width: 100%;
+      max-width: 250px;
+      margin-top: -20px;
+    }
+  }
+
+}
+
+.choice-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  @include transition();
+  width: 100%;
+  height: 100%;
+
+  button {
+    appearance: none;
+    background: transparent;
+    border-radius: 20px;
+    margin: 30px;
+    z-index: 10;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .share-container { //State behind quote
+    transform: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    @include transition();
+    
+    @media (max-width: 480px){
+      margin-top: 100px;
+    }
+
+    .icon-container {
+    
+    @media(max-width: 480px) {
+      bottom: 15%;
+
+    }
+      .icons {
+      margin: 0 auto;
+      left: 0;
+      padding: 0 50px;
+    
+      }
+    }
+  }
+}
+
+.fade-enter {
+  opacity: 0;
+
+
+  &.fade-enter-active {
+    opacity: 1;
+    @include transition();
+
+  }
+}
+
+.fade-appear {
+  opacity: 0;
+
+
+  &.fade-appear-active {
+    opacity: 1;
+    @include transition();
+
+  }
+}
+
+
+.fade-leave {
+  opacity: 1;
+
+
+  &.fade-leave-active {
+    opacity: 0;
+    @include transition();
+
+  }
+}
+
+
+.hidden {
+  opacity: 0;
+  transform: translateY(200%);
+
+  .choice-contents {
+    transform: translateY(200%) !important; //Needed to override the class given by the current choice
+    transition-delay: .5s
+  }
+
+  .share-box {
+    opacity: 0;
+  }
+
+  .pattern-container:before {
+    color: rgba(0,0,0,0)!important; 
+  }
+
+}
+
+ .share-box {
+      display: flex;
+      height: 100%;
+      position: relative;
+      /*flex-direction: column; 
+      justify-content: space-between;*/
+      // mask-image: url(../assets/banner_desktop.svg);
+      background-repeat: no-repeat;
+      //background-color: #FFF;
+      //border-radius: 10px;
+      //box-shadow: 0px 7px 8px 0px #32323C;
+      height:410px;
+      width: 400px;
+      background-size: cover;
+      margin: 0 auto;
+      @include transition();
+
+      &.gift-responses {
+        background-image: url(../assets/gr-banner_desktop.png);
+        
+      }
+      &.seasons-greetings {
+        background-image: url(../assets/sg-banner_desktop.png);
+       
+      }
+      &.invitation-excuses {
+        background-image: url(../assets/ie-banner_desktop.png);
+      }
+
+      @media (max-width: 480px){
+        &.gift-responses {
+        background-image: url(../assets/gr-banner_mobile.png);
+        @include mobile-banner();
+      }
+      &.seasons-greetings {
+        background-image: url(../assets/sg-banner_mobile.png);
+        @include mobile-banner();
+      }
+      &.invitation-excuses {
+        background-image: url(../assets/ie-banner_mobile.png);
+         @include mobile-banner();
+      }
+      }
+
+
+      p {
+        color: $home-background;
+        font-size: 16px;
+      }
+
+      .top-text {
+        position: relative;
+        top: 50px;
+        font-size: 14px;
+        margin: 0 auto;
+        width: 60%;
+        p {
+          margin-top: 0;
+        }
+      }
+
+
+      .icon-container {
+        color: $home-background;
+        position: absolute;
+        bottom: 40px;
+        left: 0;
+        width: 100%;
+
+        p {
+          font-size: 13px;
+        }
+
+        .icons {
+          position: relative;
+          left: -10px;
+          top: -10px;
+          display: flex;
+          justify-content: center;
+
+        a {
+          padding: 10px 20px;
+
+          &.mail-icon {
+            margin-top: 5px;
+          }
+        }
+
+       
+
+        svg {
+          font-size: 24px;
+          cursor: pointer;
+
+          &:hover, &:focus {
+            animation: wiggle .5s infinite;
+          }
+        }
+      }
+      }
+    }
+
+.toggle-container {
+  transform: translateY(0);
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  //justify-content: space-around;
+  position: absolute;
+  @include transition();
+  width: 100%;
+  height:auto;
+  z-index: 4;
+
+  .toggle-button-container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+
+  .choice-toggle {
+    border: 17px solid $home-background;
+    color: $text-colour;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 175px;
+    height: 175px;
+    width: 175px;
+    position: relative;
+    @include transition();
+
+    &:hover {
+      animation: button-animate .5s steps(2) infinite;
+    }
+
+    &.gift-responses {
+      background-image: url(../assets/cta_diagonals.svg)
+    }
+
+    &.seasons-greetings {
+     background-image: url(../assets/cta_crosses.svg);
+    }
+
+    &.invitation-excuses {
+      background-image: url(../assets/cta_zigzag.svg);
+    }
+
+    &:after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    height: 175px;
+    width: 175px;
+    background-color: transparent;
+    filter: opacity(50%);
+    @include transition();
+    }
+
+  }
+  }
+}
+
+
+
+.fade-enter {
+  transform: translateY(-100%)
+}
+
+.fade-enter.fade-enter-active {
+  transform: translateY(0);
+  @include transition();
+  transition-duration: .1s;
+}
+
+.fade-leave {
+  transform: translateY(0);
+}
+
+.fade-leave.fade-leave-active {
+  transform: translateY(100%);
+  @include transition();
+  transition-duration: .1s;
+}
+
+.slick-track, .slick-slider {
+  display: flex;
+}
+
+.slick-slide {
+  width: 175px !important;
+}
+
+
+.slider-decorator-0,
+.slider-decorator-1 {
+  button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+  }
+}

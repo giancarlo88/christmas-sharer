@@ -9,6 +9,8 @@ import GiftResponses from "./GiftResponses";
 import InvitationExcuses from "./InvitationExcuses";
 import SeasonsGreetings from "./SeasonsGreetings";
 import HomepageShare from "./HomepageShare"
+import VitaminFooter from './VitaminFooter'
+
 
 // function FirstChild(props) {
 //   const childrenArray = React.Children.toArray(props.children);
@@ -34,6 +36,7 @@ class ContentContainer extends Component {
           <InvitationExcuses active={this.state.choice==="invitation-excuses"} />
           <SeasonsGreetings active={this.state.choice==="seasons-greetings" } />
          <HomepageShare active={this.state.choice} />
+         <VitaminFooter/>
       </div>
     )
 }

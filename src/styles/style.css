@@ -5,6 +5,12 @@
   font-weight: normal;
   font-style: normal; }
 
+@font-face {
+  font-family: 'Cabin';
+  src: url("../assets/cabin.otf");
+  font-weight: normal;
+  font-style: normal; }
+
 * {
   min-height: 0;
   min-width: 0; }
@@ -86,7 +92,7 @@ body, html, #root, .App, .content-container {
     font-size: 14px; }
   .content-container > .share-container.homepage {
     transform: none;
-    bottom: 20px;
+    bottom: 40px;
     left: 0;
     position: absolute;
     width: 100%;
@@ -96,7 +102,7 @@ body, html, #root, .App, .content-container {
       color: #1D1E1B; }
     @media (max-width: 480px) {
       .content-container > .share-container.homepage {
-        bottom: 5%; } }
+        bottom: 10%; } }
     .content-container > .share-container.homepage .share-box {
       background-image: url(../assets/share_tag.svg);
       background-size: contain;
@@ -120,7 +126,8 @@ body, html, #root, .App, .content-container {
         .content-container > .share-container.homepage .share-box .icon-container p {
           display: none; }
         .content-container > .share-container.homepage .share-box .icon-container .icons {
-          justify-content: flex-start; }
+          justify-content: center;
+          width: 75%; }
   .content-container.seasons-greetings .share-container.homepage, .content-container.invitation-excuses .share-container.homepage, .content-container.gift-responses .share-container.homepage {
     transition: all 2s ease-in-out;
     transform: translateY(2000px);
@@ -266,6 +273,7 @@ body, html, #root, .App, .content-container {
     transform: translateY(-200%);
     margin: 0 auto;
     width: 40%;
+    max-width: 450px;
     height: 30%;
     padding-top: 10px;
     display: flex;
@@ -291,7 +299,7 @@ body, html, #root, .App, .content-container {
   padding: 25px;
   position: relative;
   z-index: 2;
-  top: 85px;
+  top: 80px;
   font-family: "DK Saffron Walden", sans-serif;
   font-size: 24px;
   display: flex;
@@ -440,7 +448,7 @@ body, html, #root, .App, .content-container {
   .share-box .icon-container {
     color: #F6F6F6;
     position: absolute;
-    bottom: 30px;
+    bottom: 40px;
     left: 0;
     width: 100%; }
     .share-box .icon-container p {
@@ -539,3 +547,70 @@ body, html, #root, .App, .content-container {
   -webkit-appearance: none;
   background: transparent;
   border: none; }
+
+.footer-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 300px;
+  width: 100%;
+  border-top: 0px solid #B5D136;
+  transition: all .2s ease;
+  z-index: 10;
+  color: white;
+  font-family: 'Cabin', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; }
+  .footer-container.lowered {
+    transform: translateY(263px); }
+  .footer-container:hover {
+    border-top: 4px solid #B5D136; }
+  .footer-container .top {
+    height: 37px;
+    width: 100%;
+    background-color: #515151;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 1px 11px 32px 0px black;
+    position: relative;
+    z-index: 11; }
+    .footer-container .top .logo {
+      background-image: url(http://codebase.vitaminlabs.co.uk/footer/assets/logo.png);
+      background-size: contain;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      margin: 0 10px;
+      height: 25px;
+      width: 30px; }
+    .footer-container .top a, .footer-container .top a:visited {
+      text-decoration: none;
+      color: white;
+      font-size: 12px;
+      margin: 0 10px; }
+  .footer-container .signatures {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #212121;
+    height: 100%; }
+    .footer-container .signatures .signature-container {
+      margin: 0 10px; }
+      .footer-container .signatures .signature-container h5, .footer-container .signatures .signature-container h6 {
+        margin: 5px 0; }
+      .footer-container .signatures .signature-container h5 {
+        color: #BDBDBD; }
+      .footer-container .signatures .signature-container h6 {
+        color: #595959; }
+    .footer-container .signatures .signature-image {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 120px;
+      height: 120px; }
+      .footer-container .signatures .signature-image.gg {
+        background-image: url(http://codebase.vitaminlabs.co.uk/footer/assets/carlo.jpg); }
+        .footer-container .signatures .signature-image.gg:hover {
+          background-image: url(http://codebase.vitaminlabs.co.uk/footer/assets/carlo.gif); }
+      .footer-container .signatures .signature-image.bl {
+        background-image: url(http://codebase.vitaminlabs.co.uk/footer/assets/bob.jpg); }
+        .footer-container .signatures .signature-image.bl:hover {
+          background-image: url(http://codebase.vitaminlabs.co.uk/footer/assets/bob.gif); }

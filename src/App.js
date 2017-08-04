@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './styles/style.css';
 import ContentContainer from "./ContentContainer.js";
 
-
 class App extends Component {
   render() {
     return (

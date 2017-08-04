@@ -22,7 +22,7 @@ componentWillReceiveProps(props){
     let link = 'http://christmas.vitaminlondon.com/16'
     let hashtag = this.state.selected
 
-    let facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${link}&picture=christmas.vitaminlondon.com/16/share_image.jpg&title=&caption=&quote=&description=${quote}%0A${fromText}`
+    let facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${link}&title=&caption=&quote=&description=${quote}%0A${fromText}`
     let twitterLink = `https://twitter.com/intent/tweet?text=${quote}&hashtags=${hashtag}&url=${link}&via=vitaminlondon`
     let mailLink = `mailTo:?subject=Oh!%20Oh!%20Oh!%20I%20forgot%20to%20say...body=${quote}%0A${fromText}%0A${link}`
     
@@ -31,7 +31,7 @@ componentWillReceiveProps(props){
       <div className='share-container share-quote'>
         <div className={classNames}>
          <div className="top-text">
-          {screen.width > 480 && <p>Click the festive speech bubble to get something new</p>}
+          {screen.width > 480 && <p>Tap that brilliant bubble to get something new</p>}
           {screen.width <= 480 && <p>Shake that seasonal screen to get something new</p>}
         </div>
           <div className="icon-container">

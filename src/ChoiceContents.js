@@ -9,8 +9,7 @@ class ChoiceContents extends Component {
   handleShake() {
     const shakeEvent = new Shake({
       timeout: 500,
-      threshold: 5
-       
+      threshold: 5 
     })
     shakeEvent.start()
     window.addEventListener('shake', this.props.callAPI, false)
